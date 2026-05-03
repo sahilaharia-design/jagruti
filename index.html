@@ -1366,6 +1366,8 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
       <form id="catForm" action="https://formspree.io/f/xgorabpd" method="POST" onsubmit="handleCat(event)">
         <input type="hidden" name="_subject" value="New Catalogue Request — Jagruti Steels"/>
         <input type="hidden" name="form_type" value="Catalogue Request"/>
+        <input type="hidden" name="lead_type" value="Catalogue Download"/>
+        <input type="hidden" name="source_cta" value="Download Catalogue"/>
         <input type="text" name="_gotcha" style="display:none"/>
         <div class="frow">
           <input type="text" class="fi" name="name" placeholder="Your Name *" required/>
@@ -1536,6 +1538,8 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
         <form id="contactForm" action="https://formspree.io/f/xkokjapa" method="POST" onsubmit="handleContact(event)">
           <input type="hidden" name="_subject" value="New Sample/Enquiry — Jagruti Steels"/>
           <input type="hidden" name="form_type" value="Sample or Enquiry"/>
+          <input type="hidden" name="lead_type" value="Product Enquiry"/>
+          <input type="hidden" id="contactSourceCta" name="source_cta" value="Send Your Requirement"/>
           <input type="text" name="_gotcha" style="display:none"/>
           <div class="frow">
             <input type="text" class="fi-l" name="name" placeholder="Name *" required/>
@@ -1809,8 +1813,8 @@ function navTo(e, target) {
   }, 300);
 }
 
-// ── Forms — submit to Formspree (backup) + Make.com (automation) simultaneously ──
-var MAKE_WEBHOOK = 'https://hook.us2.make.com/k3wi6qv4kaor46e74o2p038x7jp3kjoy';
+// ── Forms — submit to Formspree (backup) + Google Apps Script CRM (primary) simultaneously ──
+var GOOGLE_SCRIPT_URL = 'PASTE_GOOGLE_SCRIPT_WEB_APP_URL_HERE';
 
 function formToJSON(form) {
   var obj = {};
@@ -1821,16 +1825,27 @@ function formToJSON(form) {
   return obj;
 }
 
-function submitToMake(payload) {
-  // Send as URL-encoded form data so Make.com parses into individual fields
-  var params = new URLSearchParams();
-  Object.keys(payload).forEach(function(key) {
-    params.append(key, payload[key]);
-  });
-  return fetch(MAKE_WEBHOOK, {
+function normalizeLeadPayload(payload) {
+  payload.leadType        = payload.lead_type || 'Product Enquiry';
+  payload.sourceCta       = payload.source_cta || 'Send Your Requirement';
+  payload.typeOfBusiness  = payload.business_type || '';
+  payload.productRequired = payload.product_required || '';
+  payload.message         = payload.requirement || payload.message || '';
+  payload.pageUrl         = window.location.href;
+  payload.submittedAt     = new Date().toISOString();
+  payload.websiteSource   = 'jagrutisteels.com';
+  return payload;
+}
+
+function submitToCRM(payload) {
+  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf('PASTE_') === 0) {
+    return Promise.resolve();
+  }
+  return fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: params.toString()
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload)
   }).catch(function() {});
 }
 
@@ -1839,7 +1854,7 @@ function handleCat(e) {
   var form = e.target;
   var btn = form.querySelector('button[type="submit"]');
   var data = new FormData(form);
-  var payload = formToJSON(form);
+  var payload = normalizeLeadPayload(formToJSON(form));
   payload.source = 'Website Form — Catalogue';
   payload.form_type = 'Catalogue Request';
   btn.textContent = 'Sending...';
@@ -1847,7 +1862,7 @@ function handleCat(e) {
   // Fire both simultaneously
   Promise.all([
     fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } }),
-    submitToMake(payload)
+    submitToCRM(payload)
   ]).then(function(results) {
     var formspreeOK = results[0] && results[0].ok;
     if (formspreeOK) {
@@ -1875,7 +1890,7 @@ function handleContact(e) {
   var form = e.target;
   var btn = form.querySelector('button[type="submit"]');
   var data = new FormData(form);
-  var payload = formToJSON(form);
+  var payload = normalizeLeadPayload(formToJSON(form));
   payload.source = 'Website Form — Enquiry';
   payload.form_type = 'Sample or Enquiry';
   btn.textContent = 'Sending...';
@@ -1883,7 +1898,7 @@ function handleContact(e) {
   // Fire both simultaneously
   Promise.all([
     fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } }),
-    submitToMake(payload)
+    submitToCRM(payload)
   ]).then(function(results) {
     document.getElementById('contactOK').style.display = 'block';
     btn.textContent = '✓ Enquiry Sent';
@@ -1896,6 +1911,20 @@ function handleContact(e) {
     form.reset();
   });
 }
+
+// Source-CTA tracking — set hidden source_cta on the enquiry form based on the button text
+document.querySelectorAll('a[href="#contact"]').forEach(function(a){
+  a.addEventListener('click', function(){
+    var t = (a.textContent || '').trim().toLowerCase();
+    var cta = 'Send Your Requirement';
+    if (t.indexOf('sample') >= 0) cta = 'Request a Sample';
+    else if (t.indexOf('spec') >= 0 || t.indexOf('drawing') >= 0) cta = 'Send Your Spec';
+    else if (t.indexOf('bulk') >= 0) cta = 'Request Bulk Quote';
+    else if (t.indexOf('enquiry') >= 0) cta = 'Send Enquiry';
+    var f = document.getElementById('contactSourceCta');
+    if (f) f.value = cta;
+  });
+});
 
 // Nav dropdown click toggle (desktop touch/click support)
 document.querySelectorAll('.nav-dd').forEach(function(dd){
