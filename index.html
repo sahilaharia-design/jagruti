@@ -1814,13 +1814,21 @@ function navTo(e, target) {
 }
 
 // ── Forms — submit to Formspree (backup) + Google Apps Script CRM (primary) simultaneously ──
-var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw9U2muFah_9LQd4uS6b9jve5ddDQDXamcRDCFe_Ch3-kWMkbaO1VpX3OVvZt7w1m-xHQ/exec';
+var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxCOe3dsAqIoRl5W_cXLQCoY5sOedxFzxDTR83EeliZAz8M52BSA0BTSB7iD4kLnnM/exec';
+
+// Spam guard — start the clock on the first user interaction with any form field
+window.__formStartTime = 0;
+document.addEventListener('focusin', function(e) {
+  if (!window.__formStartTime && e.target && e.target.closest('#catForm, #contactForm')) {
+    window.__formStartTime = Date.now();
+  }
+}, true);
 
 function formToJSON(form) {
   var obj = {};
   var data = new FormData(form);
   data.forEach(function(val, key) {
-    if (key !== '_gotcha') obj[key] = val;
+    obj[key] = val; // include _gotcha so the server-side spam filter can see it
   });
   return obj;
 }
@@ -1834,6 +1842,7 @@ function normalizeLeadPayload(payload) {
   payload.pageUrl         = window.location.href;
   payload.submittedAt     = new Date().toISOString();
   payload.websiteSource   = 'jagrutisteels.com';
+  payload.formFillMs      = window.__formStartTime ? (Date.now() - window.__formStartTime) : 0;
   return payload;
 }
 
