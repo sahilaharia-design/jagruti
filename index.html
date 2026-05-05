@@ -611,40 +611,59 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 
 /* Exit intent overlay */
 .jc-exit-ov{
-  position:fixed;inset:0;z-index:2100;background:rgba(13,31,60,.72);
-  backdrop-filter:blur(3px);display:flex;align-items:center;
-  justify-content:center;padding:20px;animation:jcFadeIn .2s ease;
+  position:fixed;inset:0;z-index:2100;
+  background:linear-gradient(135deg,rgba(13,31,60,.88) 0%,rgba(10,22,40,.94) 100%);
+  backdrop-filter:blur(4px);display:flex;align-items:center;
+  justify-content:center;padding:20px;animation:jcFadeIn .22s ease;
 }
 .jc-exit-card{
-  background:#fff;border-radius:16px;max-width:380px;width:100%;
-  padding:28px 28px 24px;box-shadow:0 20px 70px rgba(0,0,0,.28);position:relative;
+  background:#fff;border-radius:16px;max-width:400px;width:100%;
+  box-shadow:0 24px 80px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
 }
-.jc-exit-x{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--steel);font-size:18px;cursor:pointer;line-height:1;transition:color .15s}
-.jc-exit-x:hover{color:var(--navy)}
-.jc-exit-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:9px;font-family:var(--fh);line-height:1.3}
-.jc-exit-body{font-size:12.5px;color:var(--steel-dk);line-height:1.6;margin-bottom:20px}
+.jc-exit-stripe{
+  background:linear-gradient(90deg,var(--navy) 0%,var(--blue) 100%);
+  padding:18px 24px 16px;
+}
+.jc-exit-stripe-tag{
+  font-family:var(--fm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:5px;
+}
+.jc-exit-stripe-title{
+  font-family:var(--fh);font-size:17px;font-weight:700;color:#fff;line-height:1.3;
+}
+.jc-exit-body-wrap{padding:20px 24px 22px}
+.jc-exit-x{
+  position:absolute;top:12px;right:14px;background:rgba(255,255,255,.15);
+  border:none;color:#fff;border-radius:6px;width:26px;height:26px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:13px;transition:background .15s;
+}
+.jc-exit-x:hover{background:rgba(255,255,255,.28)}
+.jc-exit-body{font-size:12.5px;color:var(--steel-dk);line-height:1.65;margin-bottom:18px}
 .jc-exit-btns{display:flex;flex-direction:column;gap:8px}
 .jc-exit-pri{
-  background:var(--navy);color:#fff;border:none;border-radius:8px;
-  padding:12px 18px;font-size:13px;font-weight:600;cursor:pointer;
+  background:linear-gradient(90deg,var(--blue) 0%,var(--blue-dk) 100%);
+  color:#fff;border:none;border-radius:9px;
+  padding:13px 18px;font-size:13px;font-weight:700;cursor:pointer;
   font-family:var(--fb);text-align:center;text-decoration:none;display:block;
-  transition:background .18s;
+  box-shadow:0 4px 16px rgba(27,95,168,.35);transition:opacity .18s;
 }
-.jc-exit-pri:hover{background:var(--blue);color:#fff}
+.jc-exit-pri:hover{opacity:.9;color:#fff}
 .jc-exit-wa{
-  background:#25d366;color:#fff;border:none;border-radius:8px;
-  padding:12px 18px;font-size:13px;font-weight:600;cursor:pointer;
+  background:#25d366;color:#fff;border:none;border-radius:9px;
+  padding:13px 18px;font-size:13px;font-weight:600;cursor:pointer;
   font-family:var(--fb);text-align:center;text-decoration:none;display:block;
   transition:background .18s;
 }
 .jc-exit-wa:hover{background:#1ebe5d;color:#fff}
 .jc-exit-ghost{
-  background:none;color:var(--blue);border:1.5px solid var(--border);
-  border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer;
+  background:#f7f8fa;color:var(--steel-dk);border:1.5px solid var(--border);
+  border-radius:9px;padding:10px 18px;font-size:12px;cursor:pointer;
   font-family:var(--fb);text-align:center;text-decoration:none;display:block;
   transition:all .18s;
 }
-.jc-exit-ghost:hover{border-color:var(--blue)}
+.jc-exit-ghost:hover{border-color:var(--blue);color:var(--blue);background:#fff}
 
 /* Launcher pill */
 .jc-btn{
@@ -818,12 +837,28 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 @keyframes jcPop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 @keyframes jcDot{0%,60%,100%{transform:scale(.6);opacity:.4}30%{transform:scale(1.1);opacity:1}}
 
-@media(max-width:600px){
-  .jc-w{bottom:16px;right:16px}
-  .jc-btn-sub{display:none}
-  .jc-btn{padding:10px 15px 10px 12px}
-  .jc-panel{width:calc(100vw - 32px);max-height:calc(100svh - 90px)}
+@media(max-width:768px){
+  /* Launcher → compact FAB circle on mobile */
+  .jc-w{bottom:18px;right:18px}
+  .jc-btn{
+    width:52px;height:52px;border-radius:50%;
+    padding:0;gap:0;justify-content:center;align-items:center;
+    box-shadow:0 4px 20px rgba(13,31,60,.42);
+  }
+  .jc-btn:hover{transform:scale(1.08);box-shadow:0 6px 24px rgba(27,95,168,.45)}
+  .jc-btn-tx{display:none}
+  .jc-btn-ic{
+    width:auto;height:auto;background:none;border-radius:0;
+  }
+  .jc-btn-ic svg{width:22px;height:22px}
+  /* Panel */
+  .jc-panel{width:calc(100vw - 32px);max-height:calc(100svh - 88px)}
   .jc-opts{max-height:175px}
+  /* Nudge */
+  .jc-nudge{max-width:calc(100vw - 90px)}
+  /* Exit card */
+  .jc-exit-stripe-title{font-size:15px}
+  .jc-exit-card{border-radius:14px}
 }
 
 /* ═══ RESPONSIVE ═══ */
@@ -2785,17 +2820,27 @@ function showExitIntent() {
   ov.className = 'jc-exit-ov';
   ov.innerHTML = '<div class="jc-exit-card">' +
     '<button class="jc-exit-x" id="jcExX">✕</button>' +
-    '<div class="jc-exit-title">Leaving without finding the right component?</div>' +
-    '<div class="jc-exit-body">Tell us what you\'re looking for — induction plates, lids, deep drawn parts, steamer plates, hospitality products or custom components. Our team responds within 2 business hours.</div>' +
-    '<div class="jc-exit-btns">' +
-      '<button class="jc-exit-pri" id="jcExChat">Ask a quick question</button>' +
-      '<a class="jc-exit-wa" href="'+buildWa()+'" target="_blank" rel="noopener">💬 WhatsApp Jagruti</a>' +
-      '<a class="jc-exit-ghost" href="'+CAT+'" target="_blank" rel="noopener">📄 Download product catalogue</a>' +
+    '<div class="jc-exit-stripe">' +
+      '<div class="jc-exit-stripe-tag">Jagruti Steels · OEM Since 1974</div>' +
+      '<div class="jc-exit-stripe-title">Leaving without finding the right component?</div>' +
+    '</div>' +
+    '<div class="jc-exit-body-wrap">' +
+      '<div class="jc-exit-body">Tell us what you\'re looking for — induction plates, lids, deep drawn parts, steamer plates, hospitality products or custom components. Our team responds within 2 business hours.</div>' +
+      '<div class="jc-exit-btns">' +
+        '<button class="jc-exit-pri" id="jcExChat">💬 Ask a quick question</button>' +
+        '<a class="jc-exit-wa" href="'+buildWa()+'" target="_blank" rel="noopener">WhatsApp Jagruti directly</a>' +
+        '<a class="jc-exit-ghost" href="'+CAT+'" target="_blank" rel="noopener">📄 Download product catalogue</a>' +
+      '</div>' +
     '</div></div>';
   document.body.appendChild(ov);
-  document.getElementById('jcExX').addEventListener('click', function(){ document.body.removeChild(ov); });
-  document.getElementById('jcExChat').addEventListener('click', function(){ document.body.removeChild(ov); openChat(); });
-  ov.addEventListener('click', function(e){ if(e.target===ov) document.body.removeChild(ov); });
+  function removeOv() { if (ov.parentNode) document.body.removeChild(ov); }
+  document.getElementById('jcExX').addEventListener('click', function(e){ e.stopPropagation(); removeOv(); });
+  document.getElementById('jcExChat').addEventListener('click', function(e){
+    e.stopPropagation(); // prevent click-outside handler from closing the chat immediately
+    removeOv();
+    setTimeout(openChat, 30); // brief defer so DOM settles before panel opens
+  });
+  ov.addEventListener('click', function(e){ if(e.target===ov) removeOv(); });
   if (typeof gtag !== 'undefined') gtag('event','exit_prompt_shown',{event_category:'chat'});
 }
 
