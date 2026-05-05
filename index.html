@@ -591,69 +591,240 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 .footer-copy{font-family:var(--fm);font-size:10px;color:var(--steel);letter-spacing:.06em}
 .footer-since{font-family:var(--fm);font-size:10px;color:var(--blue);letter-spacing:.15em;text-transform:uppercase;font-weight:600}
 
-/* ═══ WHATSAPP ═══ */
-.wa-sticky{position:fixed;bottom:24px;right:24px;z-index:800;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
-.wa-tip{background:var(--navy);color:var(--white);font-family:var(--fm);font-size:10px;letter-spacing:.08em;padding:6px 12px;border:1px solid var(--border-lt);white-space:nowrap;border-radius:3px;opacity:0;transform:translateX(8px);transition:all .35s;pointer-events:none}
-.wa-sticky:hover .wa-tip{opacity:1;transform:translateX(0)}
-.wa-fab{
-  width:52px;height:52px;background:#25d366;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:22px;
-  box-shadow:0 4px 18px rgba(37,211,102,.3);
-  animation:waPulse 3s ease-in-out infinite;
-  transition:transform .25s,box-shadow .25s;
-}
-@keyframes waPulse{
-  0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.3)}
-  50%{box-shadow:0 4px 28px rgba(37,211,102,.55),0 0 0 8px rgba(37,211,102,.08)}
-}
-.wa-fab:hover{transform:scale(1.12);box-shadow:0 6px 28px rgba(37,211,102,.5);animation:none}
+/* ═══ B2B CHAT ASSISTANT ═══ */
+.jc-w{position:fixed;bottom:24px;right:24px;z-index:1900;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:var(--fb)}
 
-/* ═══ CHAT WIDGET ═══ */
-.chat-widget{position:fixed;bottom:24px;right:24px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-.chat-panel{
-  width:320px;background:#fff;border-radius:16px;
-  box-shadow:0 8px 40px rgba(0,0,0,.18);
-  overflow:hidden;display:flex;flex-direction:column;
-  transform:scale(.92) translateY(16px);transform-origin:bottom right;
-  opacity:0;pointer-events:none;transition:all .25s cubic-bezier(.4,0,.2,1);
-  max-height:480px;
+/* Nudge bubble */
+.jc-nudge{
+  max-width:240px;background:var(--navy);color:#fff;cursor:pointer;
+  border-radius:12px 12px 0 12px;padding:12px 34px 12px 14px;
+  box-shadow:0 6px 28px rgba(13,31,60,.3);position:relative;
+  font-size:12.5px;line-height:1.5;animation:jcUp .3s ease;
 }
-.chat-panel.cp-open{opacity:1;transform:scale(1) translateY(0);pointer-events:auto}
-.chat-head{background:#25d366;padding:14px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
-.chat-head-av{width:36px;height:36px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.chat-head-info{flex:1;overflow:hidden}
-.chat-head-name{color:#fff;font-weight:700;font-size:13px;line-height:1.2}
-.chat-head-sub{color:rgba(255,255,255,.8);font-size:10px;letter-spacing:.04em}
-.chat-head-close{color:#fff;font-size:18px;cursor:pointer;opacity:.8;padding:2px 4px;line-height:1}
-.chat-head-close:hover{opacity:1}
-.chat-msgs{flex:1;overflow-y:auto;padding:14px 14px 8px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth}
-.chat-bubble{max-width:88%;padding:9px 12px;border-radius:14px;font-size:12.5px;line-height:1.5;word-break:break-word}
-.chat-bubble.bot{background:#f0f2f5;color:#1c1c1c;border-bottom-left-radius:4px;align-self:flex-start}
-.chat-bubble.usr{background:#dcf8c6;color:#1c1c1c;border-bottom-right-radius:4px;align-self:flex-end}
-.chat-opts{padding:8px 14px 14px;display:flex;flex-direction:column;gap:6px;flex-shrink:0}
-.chat-opt-btn{
-  background:#fff;border:1.5px solid #25d366;color:#128c4e;
-  border-radius:20px;padding:7px 14px;font-size:12px;font-weight:600;
-  cursor:pointer;text-align:left;transition:all .18s;
+.jc-nudge-x{
+  position:absolute;top:8px;right:9px;background:none;border:none;
+  color:rgba(255,255,255,.45);font-size:13px;cursor:pointer;
+  line-height:1;padding:0;transition:color .15s;
 }
-.chat-opt-btn:hover{background:#25d366;color:#fff}
-.chat-inp-row{padding:8px 14px 14px;display:flex;gap:6px;flex-shrink:0}
-.chat-inp{flex:1;border:1.5px solid #e0e0e0;border-radius:20px;padding:8px 14px;font-size:12px;outline:none;resize:none;font-family:inherit}
-.chat-inp:focus{border-color:#25d366}
-.chat-send{background:#25d366;border:none;border-radius:50%;width:34px;height:34px;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .18s}
-.chat-send:hover{background:#1ebe5d}
-.chat-wa-btn{
-  display:block;margin:0 14px 14px;background:#25d366;color:#fff;
-  border:none;border-radius:24px;padding:11px 18px;font-size:13px;
-  font-weight:700;cursor:pointer;text-align:center;text-decoration:none;
+.jc-nudge-x:hover{color:#fff}
+.jc-nudge-sub{font-size:10px;color:rgba(255,255,255,.5);font-family:var(--fm);margin-top:4px;letter-spacing:.04em}
+
+/* Exit intent overlay */
+.jc-exit-ov{
+  position:fixed;inset:0;z-index:2100;background:rgba(13,31,60,.72);
+  backdrop-filter:blur(3px);display:flex;align-items:center;
+  justify-content:center;padding:20px;animation:jcFadeIn .2s ease;
+}
+.jc-exit-card{
+  background:#fff;border-radius:16px;max-width:380px;width:100%;
+  padding:28px 28px 24px;box-shadow:0 20px 70px rgba(0,0,0,.28);position:relative;
+}
+.jc-exit-x{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--steel);font-size:18px;cursor:pointer;line-height:1;transition:color .15s}
+.jc-exit-x:hover{color:var(--navy)}
+.jc-exit-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:9px;font-family:var(--fh);line-height:1.3}
+.jc-exit-body{font-size:12.5px;color:var(--steel-dk);line-height:1.6;margin-bottom:20px}
+.jc-exit-btns{display:flex;flex-direction:column;gap:8px}
+.jc-exit-pri{
+  background:var(--navy);color:#fff;border:none;border-radius:8px;
+  padding:12px 18px;font-size:13px;font-weight:600;cursor:pointer;
+  font-family:var(--fb);text-align:center;text-decoration:none;display:block;
   transition:background .18s;
 }
-.chat-wa-btn:hover{background:#1ebe5d;color:#fff}
-@keyframes chatDot{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
-.chat-typing{display:flex;gap:3px;align-items:center;padding:6px 2px}
-.chat-typing span{width:6px;height:6px;background:#aaa;border-radius:50%;animation:chatDot 1.2s infinite}
-.chat-typing span:nth-child(2){animation-delay:.2s}
-.chat-typing span:nth-child(3){animation-delay:.4s}
+.jc-exit-pri:hover{background:var(--blue);color:#fff}
+.jc-exit-wa{
+  background:#25d366;color:#fff;border:none;border-radius:8px;
+  padding:12px 18px;font-size:13px;font-weight:600;cursor:pointer;
+  font-family:var(--fb);text-align:center;text-decoration:none;display:block;
+  transition:background .18s;
+}
+.jc-exit-wa:hover{background:#1ebe5d;color:#fff}
+.jc-exit-ghost{
+  background:none;color:var(--blue);border:1.5px solid var(--border);
+  border-radius:8px;padding:9px 18px;font-size:12px;cursor:pointer;
+  font-family:var(--fb);text-align:center;text-decoration:none;display:block;
+  transition:all .18s;
+}
+.jc-exit-ghost:hover{border-color:var(--blue)}
+
+/* Launcher pill */
+.jc-btn{
+  display:flex;align-items:center;gap:10px;
+  background:var(--navy);color:#fff;border:none;border-radius:32px;
+  padding:11px 18px 11px 13px;cursor:pointer;
+  box-shadow:0 4px 24px rgba(13,31,60,.38);
+  transition:transform .2s,box-shadow .2s,background .2s;
+  font-family:var(--fb);
+}
+.jc-btn:hover{background:var(--blue);transform:translateY(-2px);box-shadow:0 8px 32px rgba(27,95,168,.42)}
+.jc-btn-ic{
+  width:30px;height:30px;background:rgba(255,255,255,.13);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.jc-btn-tx{display:flex;flex-direction:column;gap:1px;text-align:left}
+.jc-btn-main{font-size:13px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.jc-btn-sub{font-size:9.5px;color:rgba(255,255,255,.55);font-family:var(--fm);letter-spacing:.05em}
+
+/* Panel */
+.jc-panel{
+  width:360px;background:#fff;border-radius:16px;
+  box-shadow:0 12px 50px rgba(13,31,60,.22),0 0 0 1px rgba(13,31,60,.06);
+  display:flex;flex-direction:column;
+  max-height:min(570px,calc(100vh - 100px));overflow:hidden;
+  transform:scale(.94) translateY(14px);transform-origin:bottom right;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .25s cubic-bezier(.4,0,.2,1);
+}
+.jc-panel.jc-on{opacity:1;transform:scale(1) translateY(0);pointer-events:auto}
+
+/* Header */
+.jc-head{
+  background:var(--navy);padding:14px 16px 12px;
+  display:flex;align-items:flex-start;gap:12px;flex-shrink:0;
+}
+.jc-head-av{
+  width:38px;height:38px;flex-shrink:0;border-radius:9px;
+  background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.jc-head-info{flex:1;overflow:hidden;min-width:0}
+.jc-head-name{color:#fff;font-weight:700;font-size:14px;font-family:var(--fh);line-height:1.2}
+.jc-head-role{color:rgba(255,255,255,.58);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--fm);margin-top:2px}
+.jc-head-time{color:rgba(255,255,255,.38);font-size:9.5px;font-family:var(--fm);margin-top:3px}
+.jc-head-x{
+  background:rgba(255,255,255,.1);border:none;color:#fff;
+  border-radius:6px;width:27px;height:27px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:13px;flex-shrink:0;transition:background .15s;
+}
+.jc-head-x:hover{background:rgba(255,255,255,.22)}
+
+/* Trust strip */
+.jc-trust{
+  background:var(--navy-2);padding:7px 16px;
+  display:flex;gap:5px;flex-wrap:nowrap;overflow-x:auto;
+  border-bottom:1px solid rgba(107,135,164,.1);flex-shrink:0;
+}
+.jc-trust::-webkit-scrollbar{display:none}
+.jc-tp{
+  font-family:var(--fm);font-size:8.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(168,191,207,.65);
+  background:rgba(107,135,164,.12);border:1px solid rgba(107,135,164,.14);
+  border-radius:3px;padding:3px 7px;white-space:nowrap;flex-shrink:0;
+}
+
+/* Messages */
+.jc-msgs{
+  flex:1;overflow-y:auto;padding:14px 14px 6px;
+  display:flex;flex-direction:column;gap:5px;
+  scroll-behavior:smooth;min-height:60px;
+}
+.jc-msgs::-webkit-scrollbar{width:3px}
+.jc-msgs::-webkit-scrollbar-thumb{background:var(--border)}
+.jc-b{
+  max-width:86%;padding:9px 13px;border-radius:14px;
+  font-size:12.5px;line-height:1.55;word-break:break-word;
+  animation:jcPop .18s ease;
+}
+.jc-b.bot{background:#f0f3f8;color:var(--ink);border-bottom-left-radius:3px;align-self:flex-start}
+.jc-b.usr{background:var(--navy);color:#fff;border-bottom-right-radius:3px;align-self:flex-end}
+.jc-typing{display:flex;gap:4px;align-items:center;padding:5px 2px}
+.jc-typing span{width:6px;height:6px;border-radius:50%;background:var(--steel);animation:jcDot 1.3s ease-in-out infinite}
+.jc-typing span:nth-child(2){animation-delay:.18s}
+.jc-typing span:nth-child(3){animation-delay:.36s}
+
+/* Options */
+.jc-opts{
+  padding:6px 14px 10px;display:flex;flex-direction:column;gap:5px;
+  flex-shrink:0;max-height:200px;overflow-y:auto;
+}
+.jc-opts::-webkit-scrollbar{width:2px}
+.jc-opt{
+  background:#fff;border:1.5px solid rgba(13,31,60,.18);color:var(--navy);
+  border-radius:8px;padding:8px 13px;font-size:12px;font-weight:600;
+  cursor:pointer;text-align:left;transition:all .16s;line-height:1.35;
+  font-family:var(--fb);
+}
+.jc-opt:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.jc-opt.jc-wa-opt:hover{background:#25d366;border-color:#25d366;color:#fff}
+
+/* Input */
+.jc-inp-row{
+  padding:8px 14px 10px;display:flex;gap:7px;align-items:center;
+  flex-shrink:0;border-top:1px solid var(--border);
+}
+.jc-inp{
+  flex:1;border:1.5px solid var(--border);border-radius:8px;
+  padding:8px 12px;font-size:12.5px;font-family:var(--fb);
+  color:var(--ink);outline:none;background:#fff;transition:border-color .18s;
+}
+.jc-inp:focus{border-color:var(--blue)}
+.jc-inp::placeholder{color:var(--steel-lt)}
+.jc-send{
+  background:var(--navy);border:none;border-radius:8px;
+  width:34px;height:34px;color:#fff;font-size:15px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:background .18s;
+}
+.jc-send:hover{background:var(--blue)}
+.jc-submit{
+  background:var(--navy);color:#fff;border:none;border-radius:8px;
+  padding:10px 14px;font-size:13px;font-weight:700;cursor:pointer;
+  font-family:var(--fb);transition:background .18s;width:100%;
+  text-align:center;margin-top:4px;
+}
+.jc-submit:hover{background:var(--blue)}
+
+/* CTA bar */
+.jc-ctas{
+  padding:8px 14px;display:grid;grid-template-columns:1fr 1fr 1fr 36px;
+  gap:5px;flex-shrink:0;border-top:1px solid var(--border);background:#f7f8fa;
+}
+.jc-cta-wa{
+  grid-column:1/-1;background:#25d366;color:#fff;border-radius:7px;
+  padding:9px;font-size:12.5px;font-weight:700;text-align:center;
+  text-decoration:none;transition:background .18s;display:block;font-family:var(--fb);
+}
+.jc-cta-wa:hover{background:#1ebe5d;color:#fff}
+.jc-cta-sm{
+  background:#fff;border:1.5px solid var(--border);color:var(--steel-dk);
+  border-radius:7px;padding:6px 4px;font-size:10.5px;font-weight:600;
+  text-align:center;text-decoration:none;transition:all .16s;
+  display:flex;align-items:center;justify-content:center;font-family:var(--fb);
+}
+.jc-cta-sm:hover{border-color:var(--blue);color:var(--blue)}
+.jc-cta-li{
+  background:#fff;border:1.5px solid var(--border);color:#0077b5;
+  border-radius:7px;padding:6px 4px;font-size:11px;font-weight:700;
+  text-align:center;text-decoration:none;transition:all .16s;
+  display:flex;align-items:center;justify-content:center;font-family:var(--fh);
+}
+.jc-cta-li:hover{border-color:#0077b5;background:rgba(0,119,181,.05)}
+
+/* Panel footer */
+.jc-pfoot{
+  padding:7px 16px;display:flex;justify-content:space-between;align-items:center;
+  flex-shrink:0;border-top:1px solid var(--border);background:#f7f8fa;
+}
+.jc-rst,.jc-hum{
+  background:none;border:none;color:var(--steel);font-size:10.5px;
+  cursor:pointer;font-family:var(--fm);letter-spacing:.04em;
+  transition:color .15s;padding:0;
+}
+.jc-rst:hover,.jc-hum:hover{color:var(--navy)}
+
+/* Animations */
+@keyframes jcUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes jcFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes jcPop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@keyframes jcDot{0%,60%,100%{transform:scale(.6);opacity:.4}30%{transform:scale(1.1);opacity:1}}
+
+@media(max-width:600px){
+  .jc-w{bottom:16px;right:16px}
+  .jc-btn-sub{display:none}
+  .jc-btn{padding:10px 15px 10px 12px}
+  .jc-panel{width:calc(100vw - 32px);max-height:calc(100svh - 90px)}
+  .jc-opts{max-height:175px}
+}
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:1100px){
@@ -1770,27 +1941,59 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   </div>
 </footer>
 
-<div class="chat-widget" id="chatWidget">
+<div class="jc-w" id="jcW">
   <!-- Chat panel -->
-  <div class="chat-panel" id="chatPanel">
-    <div class="chat-head">
-      <div class="chat-head-av">🏭</div>
-      <div class="chat-head-info">
-        <div class="chat-head-name">Jagruti Steels</div>
-        <div class="chat-head-sub">Typically replies in 2 hours</div>
+  <div class="jc-panel" id="jcPanel" role="dialog" aria-label="Jagruti Steels procurement assistant" aria-modal="true">
+    <!-- Header -->
+    <div class="jc-head">
+      <div class="jc-head-av" aria-hidden="true">🏭</div>
+      <div class="jc-head-info">
+        <div class="jc-head-name">Jagruti Steels</div>
+        <div class="jc-head-role">OEM Component Assistant</div>
+        <div class="jc-head-time">Typically replies within 2 business hours</div>
       </div>
-      <span class="chat-head-close" id="chatClose">✕</span>
+      <button class="jc-head-x" id="jcX" aria-label="Close chat">✕</button>
     </div>
-    <div class="chat-msgs" id="chatMsgs"></div>
-    <div class="chat-opts" id="chatOpts" style="display:none"></div>
-    <div class="chat-inp-row" id="chatInpRow" style="display:none">
-      <textarea class="chat-inp" id="chatInp" rows="1" placeholder="Type your requirement…"></textarea>
-      <button class="chat-send" id="chatSend">➤</button>
+    <!-- Trust strip -->
+    <div class="jc-trust" aria-hidden="true">
+      <span class="jc-tp">Since 1974</span>
+      <span class="jc-tp">OEM Manufacturing</span>
+      <span class="jc-tp">SS 430 · SS 304 · MS</span>
+      <span class="jc-tp">In-house Tooling</span>
+      <span class="jc-tp">Mumbai · Gujarat</span>
     </div>
-    <a class="chat-wa-btn" id="chatWaBtn" style="display:none" target="_blank">💬 Continue on WhatsApp →</a>
+    <!-- Messages -->
+    <div class="jc-msgs" id="jcMsgs" aria-live="polite"></div>
+    <!-- Options -->
+    <div class="jc-opts" id="jcOpts" style="display:none"></div>
+    <!-- Input row -->
+    <div class="jc-inp-row" id="jcInpRow" style="display:none">
+      <input type="text" class="jc-inp" id="jcInp" placeholder="Type your requirement…" autocomplete="off" maxlength="300"/>
+      <button class="jc-send" id="jcSend" aria-label="Send">→</button>
+    </div>
+    <!-- CTA bar (always visible) -->
+    <div class="jc-ctas">
+      <a class="jc-cta-wa" id="jcCtaWa" href="https://wa.me/919867961395?text=Hi+Jagruti+Steels%2C+I+need+help+with+a+component+requirement." target="_blank" rel="noopener">💬 WhatsApp Jagruti</a>
+      <a class="jc-cta-sm" id="jcCtaMail" href="mailto:info.jagrutisteels@gmail.com?subject=Component%20Enquiry%20%E2%80%94%20Jagruti%20Steels" target="_blank">✉ Email</a>
+      <a class="jc-cta-sm" href="/Jagruti-Steels-Catalogue.pdf" target="_blank" rel="noopener">📄 Catalogue</a>
+      <a class="jc-cta-li" href="https://www.linkedin.com/company/jagruti-steels/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+    </div>
+    <!-- Panel footer -->
+    <div class="jc-pfoot">
+      <button class="jc-rst" id="jcRst">↩ Start over</button>
+      <button class="jc-hum" id="jcHum">Talk to a person →</button>
+    </div>
   </div>
-  <!-- FAB -->
-  <button class="wa-fab" id="chatFab" aria-label="Chat with us" style="border:none;cursor:pointer">💬</button>
+  <!-- Launcher -->
+  <button class="jc-btn" id="jcBtn" aria-label="Chat with Jagruti Steels procurement assistant">
+    <div class="jc-btn-ic" aria-hidden="true">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </div>
+    <div class="jc-btn-tx">
+      <span class="jc-btn-main">Ask Jagruti</span>
+      <span class="jc-btn-sub">Find the right component</span>
+    </div>
+  </button>
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -2056,158 +2259,591 @@ document.querySelectorAll('.faq-btn').forEach(function(btn){
   });
 });
 
-// ── Chat Widget ──────────────────────────────────────────────
+// ── Jagruti B2B Chat Assistant ───────────────────────────────
 (function(){
-  var WA_NUM = '919867961395';
-  var panel  = document.getElementById('chatPanel');
-  var fab    = document.getElementById('chatFab');
-  var closeBtn = document.getElementById('chatClose');
-  var msgs   = document.getElementById('chatMsgs');
-  var opts   = document.getElementById('chatOpts');
-  var inpRow = document.getElementById('chatInpRow');
-  var inp    = document.getElementById('chatInp');
-  var sendBtn= document.getElementById('chatSend');
-  var waBtn  = document.getElementById('chatWaBtn');
+'use strict';
 
-  var state = { step: 0, product: '', requirement: '' };
+var WA   = '919867961395';
+var MAIL = 'info.jagrutisteels@gmail.com';
+var CAT  = '/Jagruti-Steels-Catalogue.pdf';
+var LI   = 'https://www.linkedin.com/company/jagruti-steels/';
 
-  var STEPS = [
-    {
-      bot: 'Hi! 👋 Welcome to Jagruti Steels.\n\nWhat product are you looking for?',
-      type: 'options',
-      options: [
-        'Induction Base Plates (SS 430)',
-        'Pressure Cooker Components',
-        'Lids & Supporting Parts',
-        'Deep Drawn Vessels / Bowls',
-        'Multi-cooker / Steamer Plates',
-        'Custom / Not sure yet'
-      ]
-    },
-    {
-      bot: 'Got it! 🔧 Could you share your requirement?\n(Diameter, quantity/month, drawing reference — anything helps)',
-      type: 'text'
-    },
-    {
-      bot: 'Perfect — our team will review your requirement and get back within 2 business hours. 🚀\n\nClick below to continue on WhatsApp:',
-      type: 'wa'
-    }
-  ];
+// DOM
+var panel  = document.getElementById('jcPanel');
+var launchBtn = document.getElementById('jcBtn');
+var closeX = document.getElementById('jcX');
+var msgs   = document.getElementById('jcMsgs');
+var optsEl = document.getElementById('jcOpts');
+var inpRow = document.getElementById('jcInpRow');
+var inp    = document.getElementById('jcInp');
+var sendEl = document.getElementById('jcSend');
+var ctaWa  = document.getElementById('jcCtaWa');
+var ctaMail= document.getElementById('jcCtaMail');
+var rstBtn = document.getElementById('jcRst');
+var humBtn = document.getElementById('jcHum');
+var wEl    = document.getElementById('jcW');
 
-  function addBubble(text, who) {
-    var el = document.createElement('div');
-    el.className = 'chat-bubble ' + who;
-    el.textContent = text;
-    msgs.appendChild(el);
-    msgs.scrollTop = msgs.scrollHeight;
-    return el;
+// State
+var S = { open:false, started:false, product:'', requirement:'', nudgeDone:false, exitDone:false };
+var _timers = [];
+
+// ── Flow definitions ─────────────────────────────────────────
+var PRODUCT_OPTS = [
+  {t:'Induction Base Plates (SS 430)',  f:'induction'},
+  {t:'Pressure Cooker Components',      f:'pressure'},
+  {t:'Lids & Supporting Parts',         f:'lids'},
+  {t:'Deep Drawn Bowls / Vessels',      f:'deepdrawn'},
+  {t:'Multi-cooker / Steamer Plates',   f:'multicooker'},
+  {t:'Hospitality Products',            f:'hospitality'},
+  {t:'Railway / Engineering Parts',     f:'railway'},
+  {t:'Custom / Not sure yet',           f:'custom'}
+];
+
+var FLOWS = {
+  welcome: {
+    msgs:[
+      'Hi, welcome to Jagruti Steels. 👋',
+      'I can help you identify the right component, understand our manufacturing capabilities, or connect you directly with our team.',
+      'What are you looking for?'
+    ],
+    opts: PRODUCT_OPTS,
+    inp: true
+  },
+  induction: {
+    product:'Induction Base Plates (SS 430)',
+    msgs:[
+      'We manufacture SS 430 induction base plates for aluminium, non-stick and stainless steel cookware — including fry pans, tawas, kadhai, pressure cookers and multi-cookers.',
+      'Available in any diameter (typically 100–220mm+) and thickness (0.4–0.6mm), with custom center hole, edge profile, surface pattern and logo embossing.',
+      'Do you already have a drawing, sample, or specification?'
+    ],
+    opts:[
+      {t:'I have a drawing / spec',      f:'share_drawing'},
+      {t:'I have a physical sample',     f:'share_sample'},
+      {t:'Looking for standard sizes',   f:'standard_sizes'},
+      {t:'Request a quote',              f:'lead_capture'},
+      {t:'💬 WhatsApp team now',         wa:true}
+    ]
+  },
+  pressure: {
+    product:'Pressure Cooker Components',
+    msgs:[
+      'We manufacture SS 430 and SS 304 pressure cooker components — lids, base discs, inner vessels, gasket rings and valve seat assemblies.',
+      'All produced to your drawing or sample, with in-house tooling and full quality inspection.',
+      'Which component are you sourcing?'
+    ],
+    opts:[
+      {t:'Pressure cooker lid',          f:'share_drawing'},
+      {t:'Base disc / bottom plate',     f:'share_drawing'},
+      {t:'Inner vessel / body',          f:'share_drawing'},
+      {t:'Full assembly or multiple',    f:'custom'},
+      {t:'💬 WhatsApp team now',         wa:true}
+    ]
+  },
+  lids: {
+    product:'Lids & Supporting Parts',
+    msgs:[
+      'We manufacture custom lids and supporting components — domed lids, flat covers, rimmed closures and food covers.',
+      'Available in SS 304, SS 430 or mild steel, produced to your specification.',
+      'What can you share about your requirement?'
+    ],
+    opts:[
+      {t:'I have a drawing / spec',      f:'share_drawing'},
+      {t:'I have a physical sample',     f:'share_sample'},
+      {t:'Describe my requirement',      inp:true},
+      {t:'💬 WhatsApp team now',         wa:true}
+    ]
+  },
+  deepdrawn: {
+    product:'Deep Drawn Bowls / Vessels',
+    msgs:[
+      'Deep drawing is a core competency at Jagruti Steels — we have been producing drawn vessels, cups and formed bodies since 1974.',
+      'Applications: pressure cooker inner bodies, serving bowls, mixing bowls, industrial vessels and food containers.',
+      'What material and approximate dimensions are you working with?'
+    ],
+    opts:[
+      {t:'SS 304 — food-grade',          f:'share_drawing'},
+      {t:'SS 430 — induction-compatible', f:'share_drawing'},
+      {t:'Mild Steel — industrial use',  f:'share_drawing'},
+      {t:'Share a drawing / spec',       f:'share_drawing'},
+      {t:'💬 WhatsApp team now',         wa:true}
+    ]
+  },
+  multicooker: {
+    product:'Multi-cooker / Steamer Plates',
+    msgs:[
+      'We manufacture perforated steamer plates, idli plates, dhokla plates and multi-cooker inserts for professional and OEM applications.',
+      'Available in SS 304 or SS 430, with custom perforation patterns, hole sizes and tray dimensions.',
+      'Which product are you sourcing?'
+    ],
+    opts:[
+      {t:'Idli plates',                  f:'share_drawing'},
+      {t:'Dhokla plates',                f:'share_drawing'},
+      {t:'Steamer insert / tray',        f:'share_drawing'},
+      {t:'Perforated tray (custom)',     f:'share_drawing'},
+      {t:'💬 WhatsApp team now',         wa:true}
+    ]
+  },
+  hospitality: {
+    product:'Hospitality Products',
+    msgs:[
+      'We manufacture SS 304 serviceware for hotels, restaurants, bars, bakeries and cloud kitchens.',
+      'Products include bar trays, bread baskets, food covers, measuring bowls and perforated display trays — all produced to your specification.',
+      'What are you looking for?'
+    ],
+    opts:[
+      {t:'Bar trays',                    f:'share_drawing'},
+      {t:'Bread baskets',                f:'share_drawing'},
+      {t:'Food covers / cloches',        f:'share_drawing'},
+      {t:'Measuring bowls',              f:'share_drawing'},
+      {t:'Bulk quote request',           f:'lead_capture'},
+      {t:'💬 WhatsApp team now',         wa:true}
+    ]
+  },
+  railway: {
+    product:'Railway / Engineering Parts',
+    msgs:[
+      'We manufacture SS and mild steel components for railway, engineering and industrial applications.',
+      'Capabilities cover cutting, blanking, stamping, embossing, pressing and deep draw for custom-spec components.',
+      'Please share your drawing, material, thickness, quantity and application for feasibility review.'
+    ],
+    opts:[
+      {t:'💬 Send via WhatsApp',         wa:true},
+      {t:'✉ Email requirement',          mail:true},
+      {t:'← Back to product list',       f:'welcome'}
+    ]
+  },
+  custom: {
+    product:'Custom Component',
+    msgs:[
+      'If it is a stamped, drawn, embossed, punched or formed metal component — we can review it.',
+      'Our team assesses feasibility from a drawing, sample, basic dimensions, or a description of the application.',
+      'What can you share about your requirement?'
+    ],
+    opts:[
+      {t:'I have a drawing / CAD file',  f:'share_drawing'},
+      {t:'I have a physical sample',     f:'share_sample'},
+      {t:'I can share dimensions',       inp:true},
+      {t:'Not sure — need guidance',     f:'not_sure'},
+      {t:'💬 WhatsApp team now',         wa:true}
+    ]
+  },
+  share_drawing: {
+    msgs:[
+      'A drawing or specification is the fastest route to a quotation. ✓',
+      'Please share it via WhatsApp or email. Include: material, diameter, thickness, quantity per month, and any surface or edge requirements.'
+    ],
+    opts:[
+      {t:'💬 Send drawing on WhatsApp',  wa:true},
+      {t:'✉ Send by email',              mail:true},
+      {t:'Get a callback instead',       f:'lead_capture'}
+    ]
+  },
+  share_sample: {
+    msgs:[
+      'A sample or clear photo gives us everything we need to assess feasibility.',
+      'Send a photo on WhatsApp — diameter, profile, edge finish, any markings — and our team will respond with next steps within 2 business hours.'
+    ],
+    opts:[
+      {t:'💬 Send sample photo via WhatsApp', wa:true},
+      {t:'✉ Describe the sample by email',    mail:true},
+      {t:'Get a callback instead',             f:'lead_capture'}
+    ]
+  },
+  standard_sizes: {
+    msgs:[
+      'Our induction base plates are manufactured to your specification — the "standard" is defined by your cookware application.',
+      'Common diameters: 100mm, 120mm, 140mm, 160mm, 180mm, 200mm, 220mm+ · Thickness: 0.4mm or 0.6mm · Various hole patterns.',
+      'Want to request a sample of a specific size?'
+    ],
+    opts:[
+      {t:'Request a sample',             f:'lead_capture'},
+      {t:'💬 Discuss with team',          wa:true},
+      {t:'✉ Send specification by email', mail:true}
+    ]
+  },
+  not_sure: {
+    msgs:[
+      'No problem — our team is used to working from incomplete information.',
+      'The most useful starting point: describe the application (what the part is used in), the approximate shape and size, and the material if known.',
+      'Type your description below, or continue on WhatsApp.'
+    ],
+    opts:[
+      {t:'Type my description',          inp:true},
+      {t:'💬 Discuss on WhatsApp',        wa:true}
+    ]
+  },
+  lead_capture: {
+    msgs:[
+      'To connect you with our team, could you share your contact details?',
+      'We will reach out on WhatsApp within 2 business hours.'
+    ],
+    form: true
+  },
+  human: {
+    msgs:[
+      'Our team is available Mon–Sat, 9:30 AM – 6:30 PM IST.',
+      'WhatsApp is the fastest channel. Email works for technical documents and drawings.'
+    ],
+    opts:[
+      {t:'💬 WhatsApp team now',         wa:true},
+      {t:'✉ Send an email',              mail:true},
+      {t:'← Back to main menu',          f:'welcome'}
+    ]
   }
+};
 
-  function showTyping() {
-    var el = document.createElement('div');
-    el.className = 'chat-bubble bot';
-    el.innerHTML = '<div class="chat-typing"><span></span><span></span><span></span></div>';
-    msgs.appendChild(el);
-    msgs.scrollTop = msgs.scrollHeight;
-    return el;
+// ── Keyword routing ──────────────────────────────────────────
+var KW = [
+  {w:['induction','ss 430','ss430','base plate','baseplate','tawa','fry pan','frypan','kadhai','handi','saucepan','casserole','cookware base','wok base'],f:'induction'},
+  {w:['pressure cooker','pressure cooker lid','pc lid','autoclave'],f:'pressure'},
+  {w:['lid','lids','cover','dome','food cover','closure','top plate'],f:'lids'},
+  {w:['idli','dhokla','steamer','perforated','multi cooker','multicooker','steamer plate','steamer insert'],f:'multicooker'},
+  {w:['deep draw','deep drawn','bowl','vessel','inner body','cup','inner vessel'],f:'deepdrawn'},
+  {w:['bar tray','bread basket','measuring bowl','hotel','restaurant','hospitality','bakery','serviceware'],f:'hospitality'},
+  {w:['railway','rail','bogey','coach','engineering','industrial','defence'],f:'railway'},
+  {w:['drawing','cad','dxf','sample','can you make','specification','spec','custom','quotation','moq','oem','price','cost'],f:'custom'}
+];
+
+function routeKw(text) {
+  var t = text.toLowerCase();
+  for (var i=0; i<KW.length; i++)
+    for (var j=0; j<KW[i].w.length; j++)
+      if (t.indexOf(KW[i].w[j]) >= 0) return KW[i].f;
+  return null;
+}
+
+// ── URL builders ─────────────────────────────────────────────
+function buildWa(extra) {
+  var t = 'Hi Jagruti Steels,\n\nI am looking for';
+  t += S.product ? ' ' + S.product : ' a custom component';
+  if (S.requirement) t += '.\n\nRequirement: ' + S.requirement;
+  if (extra) t += '\n' + extra;
+  t += '\n\nPlease help me with feasibility, pricing and next steps.';
+  return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t);
+}
+
+function buildMail() {
+  var sub = 'Component Enquiry — Jagruti Steels';
+  var b   = 'Hi Jagruti Steels,\n\nI am looking for:\nProduct/category: ' +
+            (S.product||'Custom component') + '\nRequirement: ' + (S.requirement||'') +
+            '\n\nMaterial:\nDiameter / thickness:\nQuantity per month:\nApplication:\nDrawing/sample available:\nTimeline:\n\nPlease confirm feasibility and next steps.\n\nRegards,';
+  return 'mailto:' + MAIL + '?subject=' + encodeURIComponent(sub) + '&body=' + encodeURIComponent(b);
+}
+
+function refreshCtas() {
+  if (ctaWa)   ctaWa.href   = buildWa();
+  if (ctaMail) ctaMail.href = buildMail();
+}
+
+// ── Messaging ────────────────────────────────────────────────
+function addTyping() {
+  var el = document.createElement('div');
+  el.className = 'jc-b bot';
+  el.innerHTML = '<div class="jc-typing"><span></span><span></span><span></span></div>';
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+  return el;
+}
+
+function addMsg(text, who) {
+  var el = document.createElement('div');
+  el.className = 'jc-b ' + who;
+  el.textContent = text;
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+  return el;
+}
+
+function clearTimers() { _timers.forEach(clearTimeout); _timers = []; }
+
+function runMsgs(arr, startDelay, cb) {
+  var delay = startDelay || 0;
+  for (var i=0; i<arr.length; i++) {
+    (function(msg, d, last) {
+      var t1 = setTimeout(function() {
+        var typ = addTyping();
+        var t2 = setTimeout(function() {
+          typ.remove();
+          addMsg(msg, 'bot');
+          if (last && cb) cb();
+        }, 540);
+        _timers.push(t2);
+      }, d);
+      _timers.push(t1);
+    })(arr[i], delay, i===arr.length-1);
+    delay += 880;
   }
+}
 
-  function buildWaUrl() {
-    var text = 'Hello Jagruti Steels,';
-    if (state.product) text += '\n\nProduct: ' + state.product;
-    if (state.requirement) text += '\n\nRequirement: ' + state.requirement;
-    text += '\n\nPlease share a quote or next steps.';
-    return 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(text);
-  }
+// ── Options ──────────────────────────────────────────────────
+function clearOpts() {
+  optsEl.innerHTML = '';
+  optsEl.style.display = 'none';
+  optsEl.style.cssText += ';padding:6px 14px 10px;flex-direction:column;gap:5px;max-height:200px;overflow-y:auto;';
+}
 
-  function renderStep(step) {
-    opts.style.display = 'none';
-    inpRow.style.display = 'none';
-    waBtn.style.display = 'none';
-    opts.innerHTML = '';
-
-    var typing = showTyping();
-    setTimeout(function() {
-      typing.remove();
-      var lines = STEPS[step].bot.split('\n\n');
-      lines.forEach(function(line, i) {
-        setTimeout(function() { addBubble(line, 'bot'); }, i * 120);
-      });
-      setTimeout(function() {
-        var t = STEPS[step].type;
-        if (t === 'options') {
-          opts.style.display = 'flex';
-          STEPS[step].options.forEach(function(opt) {
-            var btn = document.createElement('button');
-            btn.className = 'chat-opt-btn';
-            btn.textContent = opt;
-            btn.onclick = function() {
-              state.product = opt;
-              addBubble(opt, 'usr');
-              opts.style.display = 'none';
-              state.step = 1;
-              renderStep(1);
-            };
-            opts.appendChild(btn);
-          });
-        } else if (t === 'text') {
-          inpRow.style.display = 'flex';
-          inp.focus();
-        } else if (t === 'wa') {
-          waBtn.href = buildWaUrl();
-          waBtn.style.display = 'block';
-        }
-      }, lines.length * 120 + 200);
-    }, 700);
-  }
-
-  function submitText() {
-    var val = inp.value.trim();
-    if (!val) return;
-    state.requirement = val;
-    addBubble(val, 'usr');
-    inp.value = '';
-    inpRow.style.display = 'none';
-    state.step = 2;
-    renderStep(2);
-  }
-
-  sendBtn.addEventListener('click', submitText);
-  inp.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submitText(); }
+function showOpts(opts) {
+  clearOpts();
+  if (!opts || !opts.length) return;
+  optsEl.style.display = 'flex';
+  opts.forEach(function(o) {
+    var b = document.createElement('button');
+    b.className = 'jc-opt' + (o.wa ? ' jc-wa-opt' : '');
+    b.textContent = o.t;
+    b.addEventListener('click', function() { handleOpt(o, o.t); });
+    optsEl.appendChild(b);
   });
+}
 
-  function openChat() {
-    panel.classList.add('cp-open');
-    fab.style.display = 'none';
-    if (state.step === 0 && msgs.children.length === 0) {
-      setTimeout(function() { renderStep(0); }, 200);
+function showInp() { inpRow.style.display = 'flex'; setTimeout(function(){ inp.focus(); }, 80); }
+function hideInp() { inpRow.style.display = 'none'; inp.value = ''; }
+
+// ── Option handler ───────────────────────────────────────────
+function handleOpt(o, label) {
+  addMsg(label, 'usr');
+  clearOpts();
+  hideInp();
+
+  if (o.wa) {
+    if (typeof gtag !== 'undefined') gtag('event','whatsapp_clicked',{event_category:'chat'});
+    window.open(buildWa(), '_blank');
+    runMsgs(['Chat opened on WhatsApp. 💬 Please send your requirement and our team will respond within 2 business hours.'], 200, function() {
+      setTimeout(function(){ showOpts([{t:'← Back to main menu', f:'welcome'}]); }, 600);
+    });
+    return;
+  }
+  if (o.mail) {
+    window.open(buildMail(), '_blank');
+    runMsgs(['Email draft opened. Fill in your details and send — we respond within 1 business day. ✉'], 200, function() {
+      setTimeout(function(){ showOpts([{t:'💬 Prefer WhatsApp instead?', wa:true},{t:'← Back to main menu', f:'welcome'}]); }, 600);
+    });
+    return;
+  }
+  if (o.cat) {
+    if (typeof gtag !== 'undefined') gtag('event','catalogue_clicked',{event_category:'chat'});
+    window.open(CAT, '_blank');
+    runMsgs(['Catalogue opened in a new tab. 📄 It covers our full product range, materials and manufacturing process.'], 200, function() {
+      setTimeout(function(){ showOpts([{t:'💬 Discuss on WhatsApp', wa:true},{t:'← Back to main menu', f:'welcome'}]); }, 600);
+    });
+    return;
+  }
+  if (o.inp) { showInp(); return; }
+  if (o.f)   { goFlow(o.f); return; }
+}
+
+// ── Flow nav ─────────────────────────────────────────────────
+function goFlow(flowId) {
+  clearTimers(); clearOpts(); hideInp();
+  var flow = FLOWS[flowId];
+  if (!flow) { goFlow('welcome'); return; }
+  if (flow.product) { S.product = flow.product; refreshCtas(); }
+  if (typeof gtag !== 'undefined') gtag('event','chat_option_selected',{event_category:'chat',event_label:flowId});
+  if (flow.form) {
+    runMsgs(flow.msgs, 0, showLeadForm);
+    return;
+  }
+  runMsgs(flow.msgs, 0, function() {
+    if (flow.opts) showOpts(flow.opts);
+    if (flow.inp)  showInp();
+  });
+}
+
+// ── Lead capture ─────────────────────────────────────────────
+function showLeadForm() {
+  clearOpts();
+  optsEl.style.display = 'flex';
+  optsEl.style.flexDirection = 'column';
+  optsEl.style.gap = '0';
+  optsEl.style.padding = '0 14px 12px';
+  optsEl.style.maxHeight = 'none';
+  optsEl.style.overflowY = 'visible';
+
+  var nameI = document.createElement('input');
+  nameI.type = 'text'; nameI.className = 'jc-inp'; nameI.placeholder = 'Your name *';
+  nameI.autocomplete = 'name'; nameI.style.marginTop = '8px';
+
+  var phoneI = document.createElement('input');
+  phoneI.type = 'tel'; phoneI.className = 'jc-inp'; phoneI.placeholder = 'WhatsApp / Phone *';
+  phoneI.autocomplete = 'tel'; phoneI.style.marginTop = '6px';
+
+  var sub = document.createElement('button');
+  sub.className = 'jc-submit'; sub.textContent = 'Connect with our team →';
+
+  optsEl.appendChild(nameI); optsEl.appendChild(phoneI); optsEl.appendChild(sub);
+  setTimeout(function(){ nameI.focus(); }, 80);
+
+  function doSubmit() {
+    var n = nameI.value.trim(), p = phoneI.value.trim();
+    nameI.style.borderColor = n ? '' : '#ef4444';
+    phoneI.style.borderColor = p ? '' : '#ef4444';
+    if (!n || !p) return;
+    S.name = n; S.phone = p;
+    optsEl.innerHTML = ''; optsEl.style.display = 'none';
+    addMsg(n + ' · ' + p, 'usr');
+
+    // Submit to CRM
+    if (typeof GOOGLE_SCRIPT_URL !== 'undefined' && GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.indexOf('PASTE_') < 0) {
+      fetch(GOOGLE_SCRIPT_URL, {
+        method:'POST', mode:'no-cors',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body: JSON.stringify({
+          leadType:'Chat Lead', sourceCta:'Chat Widget',
+          name:n, phone:p, productRequired:S.product,
+          message:S.requirement||'Lead from chat widget',
+          pageUrl:window.location.href,
+          submittedAt:new Date().toISOString(),
+          websiteSource:'jagrutisteels.com'
+        })
+      }).catch(function(){});
     }
-  }
+    if (typeof gtag !== 'undefined') gtag('event','enquiry_submitted',{event_category:'chat'});
 
-  function closeChat() {
-    panel.classList.remove('cp-open');
-    fab.style.display = 'flex';
+    runMsgs([
+      'Thank you, ' + n + '! 🙏',
+      'Your enquiry has been noted. Our team will contact you on ' + p + ' within 2 business hours.',
+      'In the meantime, you can also reach us directly:'
+    ], 0, function() {
+      showOpts([
+        {t:'💬 WhatsApp now (fastest)',        wa:true},
+        {t:'✉ Send email with drawings',       mail:true},
+        {t:'📄 Download product catalogue',    cat:true}
+      ]);
+    });
   }
+  sub.addEventListener('click', doSubmit);
+  phoneI.addEventListener('keydown', function(e){ if(e.key==='Enter') doSubmit(); });
+}
 
-  fab.addEventListener('click', openChat);
-  closeBtn.addEventListener('click', closeChat);
+// ── Text input ───────────────────────────────────────────────
+function handleText() {
+  var val = inp.value.trim();
+  if (!val) return;
+  addMsg(val, 'usr'); inp.value = ''; hideInp(); clearOpts();
+  S.requirement = val; refreshCtas();
+  var match = routeKw(val);
+  if (match) { goFlow(match); return; }
+  runMsgs([
+    'Noted — "' + val.slice(0,90) + (val.length>90?'…':'') + '"',
+    'Our team can review custom specifications. The fastest route is WhatsApp or email with a drawing, sample photo, or basic dimensions.'
+  ], 0, function() {
+    showOpts([
+      {t:'💬 Send via WhatsApp',         wa:true},
+      {t:'✉ Send by email',              mail:true},
+      {t:'← Back to product list',       f:'welcome'}
+    ]);
+  });
+}
 
-  // Auto-open hint after 8s (first visit only)
-  if (!sessionStorage.getItem('chatOpened')) {
-    setTimeout(function() {
-      if (!panel.classList.contains('cp-open')) {
-        // Show a subtle nudge tooltip
-        var tip = document.createElement('div');
-        tip.style.cssText = 'position:absolute;bottom:62px;right:0;background:var(--navy);color:#fff;font-size:11px;font-family:var(--fm);padding:7px 13px;border-radius:6px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.18);letter-spacing:.04em';
-        tip.textContent = 'Chat with us 💬';
-        document.getElementById('chatWidget').style.position = 'fixed';
-        document.getElementById('chatWidget').appendChild(tip);
-        setTimeout(function() { if(tip.parentNode) tip.parentNode.removeChild(tip); }, 4000);
-      }
-    }, 8000);
-    sessionStorage.setItem('chatOpened', '1');
+// ── Open / close ─────────────────────────────────────────────
+function openChat() {
+  S.open = true;
+  panel.classList.add('jc-on');
+  launchBtn.style.display = 'none';
+  dismissNudge();
+  if (!S.started) { S.started = true; goFlow('welcome'); }
+  if (typeof gtag !== 'undefined') gtag('event','chat_opened',{event_category:'chat'});
+  document.addEventListener('keydown', escHandler);
+}
+
+function closeChat() {
+  S.open = false;
+  panel.classList.remove('jc-on');
+  launchBtn.style.display = '';
+  document.removeEventListener('keydown', escHandler);
+}
+
+function escHandler(e) { if (e.key==='Escape') closeChat(); }
+
+// ── Nudge bubble ─────────────────────────────────────────────
+var _nudgeEl = null;
+
+function showNudge(text, sub) {
+  if (S.open || _nudgeEl || sessionStorage.getItem('jcN')) return;
+  sessionStorage.setItem('jcN','1');
+  _nudgeEl = document.createElement('div');
+  _nudgeEl.className = 'jc-nudge';
+  _nudgeEl.innerHTML = text + (sub ? '<div class="jc-nudge-sub">'+sub+'</div>' : '') +
+    '<button class="jc-nudge-x" aria-label="Dismiss">✕</button>';
+  _nudgeEl.querySelector('.jc-nudge-x').addEventListener('click', function(e){
+    e.stopPropagation(); dismissNudge();
+  });
+  _nudgeEl.addEventListener('click', function(){ dismissNudge(); openChat(); });
+  wEl.insertBefore(_nudgeEl, launchBtn);
+  setTimeout(dismissNudge, 9000);
+  if (typeof gtag !== 'undefined') gtag('event','chat_prompt_shown',{event_category:'chat'});
+}
+
+function dismissNudge() {
+  if (_nudgeEl && _nudgeEl.parentNode) { _nudgeEl.parentNode.removeChild(_nudgeEl); _nudgeEl = null; }
+}
+
+// ── Exit intent ──────────────────────────────────────────────
+function showExitIntent() {
+  if (S.open || S.exitDone || sessionStorage.getItem('jcE')) return;
+  S.exitDone = true; sessionStorage.setItem('jcE','1');
+  var ov = document.createElement('div');
+  ov.className = 'jc-exit-ov';
+  ov.innerHTML = '<div class="jc-exit-card">' +
+    '<button class="jc-exit-x" id="jcExX">✕</button>' +
+    '<div class="jc-exit-title">Leaving without finding the right component?</div>' +
+    '<div class="jc-exit-body">Tell us what you\'re looking for — induction plates, lids, deep drawn parts, steamer plates, hospitality products or custom components. Our team responds within 2 business hours.</div>' +
+    '<div class="jc-exit-btns">' +
+      '<button class="jc-exit-pri" id="jcExChat">Ask a quick question</button>' +
+      '<a class="jc-exit-wa" href="'+buildWa()+'" target="_blank" rel="noopener">💬 WhatsApp Jagruti</a>' +
+      '<a class="jc-exit-ghost" href="'+CAT+'" target="_blank" rel="noopener">📄 Download product catalogue</a>' +
+    '</div></div>';
+  document.body.appendChild(ov);
+  document.getElementById('jcExX').addEventListener('click', function(){ document.body.removeChild(ov); });
+  document.getElementById('jcExChat').addEventListener('click', function(){ document.body.removeChild(ov); openChat(); });
+  ov.addEventListener('click', function(e){ if(e.target===ov) document.body.removeChild(ov); });
+  if (typeof gtag !== 'undefined') gtag('event','exit_prompt_shown',{event_category:'chat'});
+}
+
+// ── Smart triggers ───────────────────────────────────────────
+// Trigger 1: Time — 5s
+setTimeout(function(){
+  if (!S.open) showNudge('Looking for induction base plates or custom SS components?','Click to find the right product for your requirement');
+}, 5000);
+
+// Trigger 2: Scroll — 28%
+var _scrollDone = false;
+window.addEventListener('scroll', function(){
+  if (_scrollDone || S.open || sessionStorage.getItem('jcN')) return;
+  var pct = window.scrollY / Math.max(1, document.body.scrollHeight - window.innerHeight);
+  if (pct >= 0.28) {
+    _scrollDone = true;
+    showNudge('Not sure which product fits your requirement?','Ask Jagruti — we\'ll identify the right component category');
   }
+}, {passive:true});
+
+// Trigger 3: Exit intent — desktop only
+if (window.innerWidth > 900) {
+  document.addEventListener('mouseleave', function(e){
+    if (e.clientY <= 8) showExitIntent();
+  });
+}
+
+// ── Event listeners ──────────────────────────────────────────
+launchBtn.addEventListener('click', openChat);
+closeX.addEventListener('click', closeChat);
+sendEl.addEventListener('click', handleText);
+inp.addEventListener('keydown', function(e){ if(e.key==='Enter'){e.preventDefault();handleText();} });
+
+rstBtn.addEventListener('click', function(){
+  clearTimers(); msgs.innerHTML=''; clearOpts(); hideInp();
+  S.started=false; S.product=''; S.requirement='';
+  refreshCtas(); openChat();
+});
+
+humBtn.addEventListener('click', function(){
+  clearOpts(); hideInp(); goFlow('human');
+});
+
+// Click outside panel to close
+document.addEventListener('click', function(e){
+  if (S.open && !panel.contains(e.target) && !launchBtn.contains(e.target)) closeChat();
+});
+
 })();
 </script>
 </body>
