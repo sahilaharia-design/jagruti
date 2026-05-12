@@ -2945,7 +2945,7 @@ if (window.innerWidth > 900) {
   window.addEventListener('scroll', function(){
     var sy = window.scrollY;
     if (sy > _mMaxScroll) { _mMaxScroll = sy; return; }
-    if (!_mExitFired && _mMaxScroll > 300 && sy < _mMaxScroll - 100) {
+    if (!_mExitFired && _mMaxScroll > 300 && sy < _mMaxScroll - 5) {
       _mExitFired = true;
       showExitIntent();
     }
