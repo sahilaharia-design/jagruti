@@ -1731,7 +1731,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
           <option>Other</option>
         </select>
         <button type="submit" class="btn-blue" style="width:100%;margin-top:2px">Send Me the Catalogue →</button>
-        <div class="smsg" id="catOK">✓ Request received. Catalogue will be emailed within 1 business hour.</div>
+        <div class="smsg" id="catOK">✓ Thank you! <a href="/Jagruti-Steels-Catalogue.pdf" id="catPdfLink" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:underline">Download the catalogue now →</a><br><span style="font-size:12px;color:#555;display:block;margin-top:4px">A copy will also be emailed to you within 1 business hour.</span></div>
       </form>
     </div>
   </div>
@@ -2071,7 +2071,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
     <div class="jc-ctas">
       <a class="jc-cta-wa" id="jcCtaWa" href="https://wa.me/919867961395?text=Hi+Jagruti+Steels%2C+I+need+help+with+a+component+requirement." target="_blank" rel="noopener">💬 WhatsApp Jagruti</a>
       <a class="jc-cta-sm" id="jcCtaMail" href="mailto:info.jagrutisteels@gmail.com?subject=Component%20Enquiry%20%E2%80%94%20Jagruti%20Steels" target="_blank">✉ Email</a>
-      <a class="jc-cta-sm" href="/Jagruti-Steels-Catalogue.pdf" target="_blank" rel="noopener">📄 Catalogue</a>
+      <a class="jc-cta-sm" id="jcCtaCat" href="#catalogue">📄 Catalogue</a>
       <a class="jc-cta-li" href="https://www.linkedin.com/company/jagruti-steels/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
     </div>
     <!-- Panel footer -->
@@ -2716,10 +2716,13 @@ function handleOpt(o, label) {
     return;
   }
   if (o.cat) {
-    if (typeof gtag !== 'undefined') gtag('event','catalogue_clicked',{event_category:'chat'});
-    window.open(CAT, '_blank');
-    runMsgs(['Catalogue opened in a new tab. 📄 It covers our full product range, materials and manufacturing process.'], 200, function() {
-      setTimeout(function(){ showOpts([{t:'💬 Discuss on WhatsApp', wa:true},{t:'← Back to main menu', f:'welcome'}]); }, 600);
+    if (typeof gtag !== 'undefined') gtag('event','catalogue_requested',{event_category:'chat'});
+    runMsgs(['To send you the catalogue, I need your name and email. I\'ll take you to the request form — it takes 30 seconds and the download link appears immediately. 📄'], 400, function() {
+      setTimeout(function(){
+        closeChat();
+        var sec = document.getElementById('catalogue');
+        if (sec) sec.scrollIntoView({behavior:'smooth'});
+      }, 700);
     });
     return;
   }
@@ -2890,7 +2893,7 @@ function showExitIntent() {
       '<div class="jc-exit-btns">' +
         '<button class="jc-exit-pri" id="jcExChat">💬 Ask a quick question</button>' +
         '<a class="jc-exit-wa" href="'+buildWa()+'" target="_blank" rel="noopener">WhatsApp Jagruti directly</a>' +
-        '<a class="jc-exit-ghost" href="'+CAT+'" target="_blank" rel="noopener">📄 Download product catalogue</a>' +
+        '<button class="jc-exit-ghost" id="jcExCat">📄 Get the product catalogue</button>' +
       '</div>' +
     '</div></div>';
   document.body.appendChild(ov);
@@ -2900,6 +2903,14 @@ function showExitIntent() {
     e.stopPropagation(); // prevent click-outside handler from closing the chat immediately
     removeOv();
     setTimeout(openChat, 200); // defer long enough so overlay is fully removed before panel opens
+  });
+  document.getElementById('jcExCat').addEventListener('click', function(e){
+    e.stopPropagation();
+    removeOv();
+    setTimeout(function(){
+      var sec = document.getElementById('catalogue');
+      if (sec) sec.scrollIntoView({behavior:'smooth'});
+    }, 80);
   });
   ov.addEventListener('click', function(e){ if(e.target===ov) removeOv(); });
   if (typeof gtag !== 'undefined') gtag('event','exit_prompt_shown',{event_category:'chat'});
@@ -2928,15 +2939,16 @@ if (window.innerWidth > 900) {
     if (e.clientY <= 8) showExitIntent();
   });
 } else {
-  // Mobile: detect fast upward scroll (user swiping up to leave)
-  var _mScrollY = window.scrollY, _mScrollT = 0, _mExitFired = false;
+  // Mobile: fire when user has read significant content (scrolled 500px+)
+  // then scrolls back up past 40% of their max depth — strong "about to leave" signal
+  var _mMaxScroll = 0, _mExitFired = false;
   window.addEventListener('scroll', function(){
-    var now = Date.now(), dy = window.scrollY - _mScrollY, dt = now - _mScrollT;
-    if (!_mExitFired && dt > 0 && dt < 300 && dy < -50 && window.scrollY < 200) {
+    var sy = window.scrollY;
+    if (sy > _mMaxScroll) { _mMaxScroll = sy; return; }
+    if (!_mExitFired && _mMaxScroll > 500 && sy < _mMaxScroll * 0.4) {
       _mExitFired = true;
       showExitIntent();
     }
-    _mScrollY = window.scrollY; _mScrollT = now;
   }, {passive:true});
 }
 
@@ -2955,6 +2967,16 @@ rstBtn.addEventListener('click', function(e){
 
 humBtn.addEventListener('click', function(e){
   e.stopPropagation(); clearOpts(); hideInp(); goFlow('human');
+});
+
+// CTA bar catalogue link — close chat and scroll to form
+document.getElementById('jcCtaCat').addEventListener('click', function(e){
+  e.stopPropagation(); e.preventDefault();
+  closeChat();
+  setTimeout(function(){
+    var sec = document.getElementById('catalogue');
+    if (sec) sec.scrollIntoView({behavior:'smooth'});
+  }, 80);
 });
 
 // Swallow all clicks inside the panel so they never reach the close handler
