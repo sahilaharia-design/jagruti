@@ -2878,8 +2878,8 @@ function dismissNudge() {
 
 // ── Exit intent ──────────────────────────────────────────────
 function showExitIntent() {
-  if (S.open || S.exitDone || sessionStorage.getItem('jcE')) return;
-  S.exitDone = true; sessionStorage.setItem('jcE','1');
+  if (S.open || S.exitDone) return;
+  S.exitDone = true;
   var ov = document.createElement('div');
   ov.className = 'jc-exit-ov';
   ov.innerHTML = '<div class="jc-exit-card">' +
@@ -2933,24 +2933,23 @@ window.addEventListener('scroll', function(){
   }
 }, {passive:true});
 
-// Trigger 3: Exit intent — desktop (mouseleave) + mobile (fast scroll-up)
+// Trigger 3: Exit intent — scroll-up on ALL devices + mouseleave on desktop
+// Desktop mouseleave (cursor moves to address bar / browser chrome)
 if (window.innerWidth > 900) {
   document.addEventListener('mouseleave', function(e){
     if (e.clientY <= 8) showExitIntent();
   });
-} else {
-  // Mobile: fire as soon as user starts scrolling back up after reading content
-  // Triggers when: scrolled down 300px+ AND reversed by just 100px upward
-  var _mMaxScroll = 0, _mExitFired = false;
-  window.addEventListener('scroll', function(){
-    var sy = window.scrollY;
-    if (sy > _mMaxScroll) { _mMaxScroll = sy; return; }
-    if (!_mExitFired && _mMaxScroll > 300 && sy < _mMaxScroll - 5) {
-      _mExitFired = true;
-      showExitIntent();
-    }
-  }, {passive:true});
 }
+// Scroll-based: fires on first upward scroll after user has scrolled 300px down
+// Works on desktop AND mobile
+var _exitMaxScroll = 0;
+window.addEventListener('scroll', function(){
+  var sy = window.scrollY;
+  if (sy > _exitMaxScroll) { _exitMaxScroll = sy; return; }
+  if (_exitMaxScroll > 300 && sy < _exitMaxScroll - 5) {
+    showExitIntent(); // showExitIntent has its own one-shot guard (S.exitDone)
+  }
+}, {passive:true});
 
 // ── Event listeners ──────────────────────────────────────────
 launchBtn.addEventListener('click', function(e){ e.stopPropagation(); openChat(); });
