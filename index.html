@@ -2939,13 +2939,13 @@ if (window.innerWidth > 900) {
     if (e.clientY <= 8) showExitIntent();
   });
 } else {
-  // Mobile: fire when user has read significant content (scrolled 500px+)
-  // then scrolls back up past 40% of their max depth — strong "about to leave" signal
+  // Mobile: fire as soon as user starts scrolling back up after reading content
+  // Triggers when: scrolled down 300px+ AND reversed by just 100px upward
   var _mMaxScroll = 0, _mExitFired = false;
   window.addEventListener('scroll', function(){
     var sy = window.scrollY;
     if (sy > _mMaxScroll) { _mMaxScroll = sy; return; }
-    if (!_mExitFired && _mMaxScroll > 500 && sy < _mMaxScroll * 0.4) {
+    if (!_mExitFired && _mMaxScroll > 300 && sy < _mMaxScroll - 100) {
       _mExitFired = true;
       showExitIntent();
     }
