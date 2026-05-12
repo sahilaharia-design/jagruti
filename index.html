@@ -2662,12 +2662,12 @@ function runMsgs(arr, startDelay, cb) {
           typ.remove();
           addMsg(msg, 'bot');
           if (last && cb) cb();
-        }, 540);
+        }, 800);
         _timers.push(t2);
       }, d);
       _timers.push(t1);
     })(arr[i], delay, i===arr.length-1);
-    delay += 880;
+    delay += 1400;
   }
 }
 
@@ -2836,7 +2836,7 @@ function openChat() {
   panel.classList.add('jc-on');
   launchBtn.style.display = 'none';
   dismissNudge();
-  if (!S.started) { S.started = true; goFlow('welcome'); }
+  if (!S.started) { S.started = true; setTimeout(function(){ goFlow('welcome'); }, 400); }
   if (typeof gtag !== 'undefined') gtag('event','chat_opened',{event_category:'chat'});
   document.addEventListener('keydown', escHandler);
 }
@@ -2899,7 +2899,7 @@ function showExitIntent() {
   document.getElementById('jcExChat').addEventListener('click', function(e){
     e.stopPropagation(); // prevent click-outside handler from closing the chat immediately
     removeOv();
-    setTimeout(openChat, 30); // brief defer so DOM settles before panel opens
+    setTimeout(openChat, 200); // defer long enough so overlay is fully removed before panel opens
   });
   ov.addEventListener('click', function(e){ if(e.target===ov) removeOv(); });
   if (typeof gtag !== 'undefined') gtag('event','exit_prompt_shown',{event_category:'chat'});
@@ -2922,11 +2922,22 @@ window.addEventListener('scroll', function(){
   }
 }, {passive:true});
 
-// Trigger 3: Exit intent — desktop only
+// Trigger 3: Exit intent — desktop (mouseleave) + mobile (fast scroll-up)
 if (window.innerWidth > 900) {
   document.addEventListener('mouseleave', function(e){
     if (e.clientY <= 8) showExitIntent();
   });
+} else {
+  // Mobile: detect fast upward scroll (user swiping up to leave)
+  var _mScrollY = window.scrollY, _mScrollT = 0, _mExitFired = false;
+  window.addEventListener('scroll', function(){
+    var now = Date.now(), dy = window.scrollY - _mScrollY, dt = now - _mScrollT;
+    if (!_mExitFired && dt > 0 && dt < 300 && dy < -50 && window.scrollY < 200) {
+      _mExitFired = true;
+      showExitIntent();
+    }
+    _mScrollY = window.scrollY; _mScrollT = now;
+  }, {passive:true});
 }
 
 // ── Event listeners ──────────────────────────────────────────
