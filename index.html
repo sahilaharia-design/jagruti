@@ -357,7 +357,7 @@ nav.scrolled{box-shadow:0 4px 32px rgba(13,31,60,.13)}
 .ticker-text{font-family:var(--fm);font-size:11px;font-weight:500;color:var(--steel-lt);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 
 /* ═══ SECTIONS ═══ */
-.sec{padding:84px 60px}
+.sec{padding:64px 60px}
 .skicker{
   font-family:var(--fm);font-size:10px;letter-spacing:.22em;
   text-transform:uppercase;color:var(--blue);
@@ -1045,7 +1045,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   .hsn-meta{grid-template-columns:1fr 1fr!important}
 }
 @media(max-width:600px){
-  .sec{padding:40px 16px}
+  .sec{padding:32px 16px}
   footer{padding:32px 16px 16px}
   /* Hero mobile — generous image, tighter text */
   .hero-h1{font-size:clamp(34px,9vw,42px)}
@@ -1114,8 +1114,8 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   .reason{padding:16px 18px}
   .reason-title{font-size:13px}
   .reason-text{font-size:12px}
-  #faq{padding:48px 16px}
-  #platforms{padding:52px 16px}
+  #faq{padding:36px 16px}
+  #platforms{padding:36px 16px}
   .plat-logos{gap:12px;display:grid!important;grid-template-columns:1fr 1fr;justify-items:stretch}
   .plat-logo-link{width:100%;min-width:0;min-height:68px;padding:14px 12px;border-radius:10px}
   .plat-logo-link svg{height:26px;max-width:100%}
@@ -1134,7 +1134,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   .about-grid-3{grid-template-columns:1fr 1fr!important}
 }
 /* ═══ MFG NETWORK ═══ */
-.mfg-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto 40px}
+.mfg-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto 28px}
 .mfg-card{background:rgba(255,255,255,.05);border:1.5px solid rgba(107,135,164,.18);border-radius:12px;padding:28px 24px;position:relative;overflow:hidden}
 .mfg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),transparent)}
 .mfg-card-ico{width:38px;height:38px;border-radius:9px;background:rgba(27,95,168,.18);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
@@ -1142,7 +1142,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 .mfg-card-title{font-family:var(--fh);font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.25}
 .mfg-card-body{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7}
 /* ═══ OEM SECTION ═══ */
-.oem-caps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:0 auto 40px}
+.oem-caps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:0 auto 28px}
 .oem-cap{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:22px 20px}
 .oem-cap-n{font-family:var(--fm);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
 .oem-cap-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:7px}
@@ -1156,14 +1156,10 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 .guj-map-wrap{border-radius:10px;overflow:hidden;border:1.5px solid var(--border);box-shadow:0 4px 24px rgba(13,31,60,.10)}
 .guj-map-wrap iframe{display:block;width:100%;height:260px;border:0}
 /* ═══ RESPONSIVE MAP WRAPPER ═══ */
-.map-wrapper{position:relative;width:100%;overflow:hidden;border-radius:0;line-height:0}
-.map-wrapper iframe{width:100%;height:220px;border:0;display:block}
-@media(max-width:768px){
-  .map-wrapper iframe{height:200px}
-}
-@media(max-width:480px){
-  .map-wrapper iframe{height:180px}
-}
+.map-wrapper{position:relative;width:100%;overflow:hidden;border-radius:0 0 10px 10px;line-height:0}
+.map-wrapper iframe{width:100%;height:240px;border:0;display:block}
+@media(max-width:600px){.map-wrapper iframe{height:200px}}
+
 @media(max-width:768px){
   .mfg-cards{grid-template-columns:1fr!important}
   .oem-caps{grid-template-columns:1fr 1fr!important}
@@ -1199,7 +1195,6 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
       <a href="#capabilities" onclick="return false">Capabilities <span class="nav-dd-arrow">▾</span></a>
       <div class="nav-drop">
         <a href="#capabilities" onclick="navTo(event,'#capabilities')">Manufacturing Capabilities</a>
-        <a href="#induction" onclick="navTo(event,'#induction')">Custom Patterns &amp; Tooling</a>
         <a href="#process" onclick="navTo(event,'#process')">How We Work</a>
       </div>
     </li>
@@ -1237,7 +1232,6 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
     <a href="#applications" onclick="navTo(event,'#applications')">Applications</a>
     <div class="mob-group">Capabilities</div>
     <a href="#capabilities" onclick="navTo(event,'#capabilities')">Manufacturing Capabilities</a>
-    <a href="#induction" onclick="navTo(event,'#induction')">Custom Patterns &amp; Tooling</a>
     <a href="#process" onclick="navTo(event,'#process')">How We Work</a>
     <div class="mob-group">Company</div>
     <a href="#about" onclick="navTo(event,'#about')">About Us</a>
@@ -1695,12 +1689,12 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 
 <!-- ABOUT JAGRUTI -->
 <section id="about" class="sec" style="background:var(--off)">
-  <div class="fade-up" style="max-width:720px;margin:0 auto 48px">
+  <div class="fade-up" style="max-width:720px;margin:0 auto 28px">
     <div class="skicker" style="color:var(--blue)">About Us</div>
     <h2 class="sh dark">Built on Fifty Years<br>of Making Things Right</h2>
     <p class="ssub dark">Jagruti Metal Industries was founded in Mumbai in 1974 — more than five decades of uninterrupted OEM manufacturing. We are a family-run precision components business supplying India's cookware industry and exporting globally. Our work is invisible to the end consumer, but present in every induction-compatible pan, pressure cooker, and multi-cooker we supply into.</p>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:1000px;margin:0 auto 48px" class="fade-up about-grid-3">
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:1000px;margin:0 auto 32px" class="fade-up about-grid-3">
     <div style="background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:24px 16px;text-align:center">
       <div style="font-family:var(--fh);font-size:40px;font-weight:700;color:var(--blue);line-height:1;margin-bottom:8px">50+</div>
       <div style="font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--steel-dk)">Years Manufacturing</div>
@@ -1767,7 +1761,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 
 <!-- MFG NETWORK -->
 <section id="mfg-network" class="sec" style="background:var(--navy)">
-  <div class="fade-up" style="text-align:center;max-width:680px;margin:0 auto 48px">
+  <div class="fade-up" style="text-align:center;max-width:680px;margin:0 auto 36px">
     <div class="skicker" style="color:var(--blue-lt)">MFG Network</div>
     <h2 class="sh" style="color:var(--white)">Mumbai Base. Gujarat Capacity.<br>One Jagruti Manufacturing Network.</h2>
     <p class="ssub" style="color:rgba(255,255,255,.5)">Jagruti Steels Pvt. Ltd. operates through a Mumbai base and an associated Gujarat manufacturing unit, giving OEM buyers stronger production depth, custom tooling support, and scalable supply for stainless steel and metal components.</p>
@@ -1830,7 +1824,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 
 <!-- APPLICATION CASE STUDIES -->
 <section class="sec" style="background:var(--off);overflow-x:hidden" id="applications-proof">
-  <div class="fade-up" style="text-align:center;max-width:680px;margin:0 auto 48px">
+  <div class="fade-up" style="text-align:center;max-width:680px;margin:0 auto 36px">
     <div class="skicker" style="color:var(--blue)">How We're Used</div>
     <h2 class="sh dark">Components That Ship Inside<br>Global Cookware Brands</h2>
     <p class="ssub dark">We supply the same component types to India's top cookware names and international OEM buyers — anonymised here at client request.</p>
@@ -1923,7 +1917,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 
 <!-- OEM WHITE LABEL -->
 <section id="oem-whitelabel" class="sec" style="background:var(--navy)">
-  <div class="fade-up" style="text-align:center;max-width:700px;margin:0 auto 48px">
+  <div class="fade-up" style="text-align:center;max-width:700px;margin:0 auto 36px">
     <div class="skicker" style="color:var(--blue-lt)">OEM + White Label</div>
     <h2 class="sh" style="color:var(--white)">OEM &amp; White-Label Supply.<br>Your Spec. Our Manufacturing.</h2>
     <p class="ssub" style="color:rgba(255,255,255,.5)">Jagruti supports cookware brands, exporters, and private-label buyers that need components manufactured to their own product standards — not a standard catalogue. We supply the invisible-but-critical parts that fit inside your final product.</p>
@@ -2183,7 +2177,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 <section id="faq" class="sec">
   <div class="skicker">Common Questions</div>
   <h2 class="sh dark" style="margin-bottom:10px">Frequently Asked Questions</h2>
-  <p class="ssub dark" style="margin-bottom:44px">Everything procurement teams, brand buyers and international sourcing teams ask before placing their first order.</p>
+  <p class="ssub dark" style="margin-bottom:28px">Everything procurement teams, brand buyers and international sourcing teams ask before placing their first order.</p>
 
   <div class="faq-cols">
 
@@ -2297,7 +2291,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 </section>
 
 <!-- FACILITY VISIT CTA -->
-<section id="factory-visit" style="background:var(--navy);padding:64px 60px;text-align:center" class="facility-visit-sec">
+<section id="factory-visit" style="background:var(--navy);padding:52px 60px;text-align:center" class="facility-visit-sec">
   <div class="fade-up" style="max-width:600px;margin:0 auto">
     <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;padding:6px 14px;border-radius:20px;background:rgba(27,95,168,.2);border:1px solid rgba(59,143,216,.3)">
       <div style="width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0"></div>
@@ -2317,7 +2311,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="sec" style="background:var(--white);padding:84px 60px">
+<section id="contact" class="sec" style="background:var(--white)">
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch">
 
     <!-- LEFT: Contact info + form -->
@@ -2387,7 +2381,6 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
           </div>
         </div>
         <div class="map-wrapper">
-          <div style="height:3px;background:linear-gradient(90deg,#4285F4 25%,#34A853 25% 50%,#FBBC05 50% 75%,#EA4335 75%);flex-shrink:0"></div>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7723317379996!2d72.86791361142517!3d19.073744982055892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c960406ba97d%3A0xe3ce998230f4c79e!2sJagruti%20Steels%20Pvt.%20Ltd!5e0!3m2!1sen!2sin!4v1777466766111!5m2!1sen!2sin"
             width="100%"
@@ -2414,7 +2407,6 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
           </div>
         </div>
         <div class="map-wrapper">
-          <div style="height:3px;background:linear-gradient(90deg,var(--blue) 40%,rgba(27,95,168,.2) 100%);flex-shrink:0"></div>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1871.2074432294958!2d72.85672809770878!3d20.283087243162594!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be0d326618361ef%3A0x42118f929270de07!2sMammal%20Industries!5e0!3m2!1sen!2sin!4v1778748500479!5m2!1sen!2sin"
             width="100%"
@@ -2438,7 +2430,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 </section>
 
 <!-- B2B PLATFORMS & SOCIAL -->
-<section id="platforms" class="sec" style="padding:72px 60px">
+<section id="platforms" class="sec" style="padding:52px 60px">
   <div class="plat-inner">
     <div class="skicker">Verified Supplier</div>
     <h2 class="sh">Find Us On Leading B2B Platforms</h2>
@@ -2523,12 +2515,14 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
     <div>
       <div class="fc-title">Company</div>
       <ul class="fc-links">
-        <li><a href="#about">About Jagruti</a></li>
-        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#mfg-network">Manufacturing Network</a></li>
+        <li><a href="#capabilities">Manufacturing Capabilities</a></li>
         <li><a href="#why">Why Jagruti</a></li>
-        <li><a href="#material-spec">SS 430 Specification</a></li>
-        <li><a href="#markets">Markets</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#oem-whitelabel">OEM &amp; White Label</a></li>
+        <li><a href="#markets">Who We Serve</a></li>
+        <li><a href="#material-spec">Technical Reference</a></li>
+        <li><a href="#faq">FAQs</a></li>
         <li><a href="#catalogue">Download Catalogue</a></li>
       </ul>
     </div>
@@ -2545,7 +2539,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   </div>
   <div class="footer-bottom">
     <div>
-      <span class="footer-copy">© 2025 Jagruti Steels Pvt. Ltd. · Mumbai, Maharashtra, India · GSTIN 27AAACJ9826****</span><br>
+      <span class="footer-copy">© 2026 Jagruti Steels Pvt. Ltd. · Mumbai, Maharashtra, India · GSTIN 27AAACJ9826****</span><br>
       <span style="font-family:var(--fm);font-size:9.5px;color:rgba(107,135,164,.5);letter-spacing:.05em">Gujarat Unit: Mammal Industries, Sarigam · GSTIN 24AARFM9084**** · Sister Concern</span><br>
       <span style="font-family:var(--fm);font-size:9.5px;color:rgba(107,135,164,.5);letter-spacing:.05em">Materials aligned with BIS / EN 1.4016 · All specifications subject to final order confirmation</span>
     </div>
