@@ -87,6 +87,10 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 html{overflow-x:hidden}
+/* ── Sticky nav offset — sections scroll fully into view ── */
+section[id]{scroll-margin-top:84px}
+@media(max-width:1100px){section[id]{scroll-margin-top:72px}}
+@media(max-width:768px){section[id]{scroll-margin-top:60px}}
 body{font-family:var(--fb);background:var(--white);color:var(--ink);overflow-x:hidden;line-height:1.6}
 img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
@@ -1186,40 +1190,34 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
     <li class="nav-dd">
       <a href="#products" onclick="return false">Products <span class="nav-dd-arrow">▾</span></a>
       <div class="nav-drop">
-        <a href="#induction-base-plates" onclick="navTo(event,'#induction-base-plates')">Induction Base Plates</a>
-        <a href="#pressure-cooker-components" onclick="navTo(event,'#pressure-cooker-components')">Pressure Cooker Components</a>
-        <a href="#lids-components" onclick="navTo(event,'#lids-components')">Lids &amp; Components</a>
-        <a href="#deep-drawn-vessels" onclick="navTo(event,'#deep-drawn-vessels')">Deep Drawn Vessels</a>
-        <a href="#steamer-idli-plates" onclick="navTo(event,'#steamer-idli-plates')">Steamer &amp; Idli Plates</a>
-        <a href="#hospitality" onclick="navTo(event,'#hospitality')">Hospitality Components</a>
+        <a href="#products" onclick="navTo(event,'#products')">What We Make</a>
+        <a href="#induction" onclick="navTo(event,'#induction')">Induction Plates</a>
+        <a href="#applications" onclick="navTo(event,'#applications')">Applications</a>
       </div>
     </li>
     <li class="nav-dd">
       <a href="#capabilities" onclick="return false">Capabilities <span class="nav-dd-arrow">▾</span></a>
       <div class="nav-drop">
-        <a href="#induction" onclick="navTo(event,'#induction')">Custom Patterns &amp; Sizes</a>
-        <a href="#cutting-blanking" onclick="navTo(event,'#cutting-blanking')">Cutting &amp; Blanking</a>
-        <a href="#embossing-stamping" onclick="navTo(event,'#embossing-stamping')">Embossing &amp; Stamping</a>
-        <a href="#deep-draw-forming" onclick="navTo(event,'#deep-draw-forming')">Deep Draw Forming</a>
-        <a href="#power-press-operations" onclick="navTo(event,'#power-press-operations')">Power Press Operations</a>
-        <a href="#oem-whitelabel" onclick="navTo(event,'#oem-whitelabel')">Custom Tooling &amp; OEM</a>
-        <a href="#process" onclick="navTo(event,'#process')">OEM Workflow</a>
+        <a href="#capabilities" onclick="navTo(event,'#capabilities')">Manufacturing Capabilities</a>
+        <a href="#induction" onclick="navTo(event,'#induction')">Custom Patterns &amp; Tooling</a>
+        <a href="#process" onclick="navTo(event,'#process')">How We Work</a>
       </div>
     </li>
     <li class="nav-dd">
       <a href="#about" onclick="return false">Company <span class="nav-dd-arrow">▾</span></a>
       <div class="nav-drop">
-        <a href="#about" onclick="navTo(event,'#about')">About Jagruti</a>
+        <a href="#about" onclick="navTo(event,'#about')">About Us</a>
         <a href="#mfg-network" onclick="navTo(event,'#mfg-network')">Manufacturing Network</a>
         <a href="#why" onclick="navTo(event,'#why')">Why Jagruti</a>
-        <a href="#applications-proof" onclick="navTo(event,'#applications-proof')">Global Cookware Brands</a>
-        <a href="#markets" onclick="navTo(event,'#markets')">Markets &amp; Export</a>
+        <a href="#applications-proof" onclick="navTo(event,'#applications-proof')">How We Are Used</a>
+        <a href="#oem-whitelabel" onclick="navTo(event,'#oem-whitelabel')">OEM &amp; White Label</a>
+        <a href="#markets" onclick="navTo(event,'#markets')">Who We Serve</a>
         <a href="#material-spec" onclick="navTo(event,'#material-spec')">Technical Reference</a>
-        <a href="#factory-visit" onclick="navTo(event,'#factory-visit')">Factory Visit</a>
       </div>
     </li>
     <li><a href="#catalogue" onclick="navTo(event,'#catalogue')">Catalogue</a></li>
     <li><a href="#faq" onclick="navTo(event,'#faq')">FAQs</a></li>
+    <li><a href="#contact" onclick="navTo(event,'#contact')">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-cta">Request Sample</a>
   <a href="#contact" class="nav-mob-cta" onclick="navTo(event,'#contact')">Request Sample</a>
@@ -1234,30 +1232,24 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   </div>
   <div class="mob-links">
     <div class="mob-group">Products</div>
-    <a href="#induction-base-plates" onclick="navTo(event,'#induction-base-plates')">Induction Base Plates</a>
-    <a href="#pressure-cooker-components" onclick="navTo(event,'#pressure-cooker-components')">Pressure Cooker Components</a>
-    <a href="#lids-components" onclick="navTo(event,'#lids-components')">Lids &amp; Components</a>
-    <a href="#deep-drawn-vessels" onclick="navTo(event,'#deep-drawn-vessels')">Deep Drawn Vessels</a>
-    <a href="#steamer-idli-plates" onclick="navTo(event,'#steamer-idli-plates')">Steamer &amp; Idli Plates</a>
-    <a href="#hospitality" onclick="navTo(event,'#hospitality')">Hospitality Components</a>
+    <a href="#products" onclick="navTo(event,'#products')">What We Make</a>
+    <a href="#induction" onclick="navTo(event,'#induction')">Induction Plates</a>
+    <a href="#applications" onclick="navTo(event,'#applications')">Applications</a>
     <div class="mob-group">Capabilities</div>
-    <a href="#induction" onclick="navTo(event,'#induction')">Custom Patterns &amp; Sizes</a>
-    <a href="#cutting-blanking" onclick="navTo(event,'#cutting-blanking')">Cutting &amp; Blanking</a>
-    <a href="#embossing-stamping" onclick="navTo(event,'#embossing-stamping')">Embossing &amp; Stamping</a>
-    <a href="#deep-draw-forming" onclick="navTo(event,'#deep-draw-forming')">Deep Draw Forming</a>
-    <a href="#oem-whitelabel" onclick="navTo(event,'#oem-whitelabel')">Custom Tooling &amp; OEM</a>
-    <a href="#process" onclick="navTo(event,'#process')">OEM Workflow</a>
+    <a href="#capabilities" onclick="navTo(event,'#capabilities')">Manufacturing Capabilities</a>
+    <a href="#induction" onclick="navTo(event,'#induction')">Custom Patterns &amp; Tooling</a>
+    <a href="#process" onclick="navTo(event,'#process')">How We Work</a>
     <div class="mob-group">Company</div>
-    <a href="#about" onclick="navTo(event,'#about')">About Jagruti</a>
+    <a href="#about" onclick="navTo(event,'#about')">About Us</a>
     <a href="#mfg-network" onclick="navTo(event,'#mfg-network')">Manufacturing Network</a>
     <a href="#why" onclick="navTo(event,'#why')">Why Jagruti</a>
-    <a href="#applications-proof" onclick="navTo(event,'#applications-proof')">Global Cookware Brands</a>
-    <a href="#markets" onclick="navTo(event,'#markets')">Markets &amp; Export</a>
+    <a href="#applications-proof" onclick="navTo(event,'#applications-proof')">How We Are Used</a>
+    <a href="#oem-whitelabel" onclick="navTo(event,'#oem-whitelabel')">OEM &amp; White Label</a>
+    <a href="#markets" onclick="navTo(event,'#markets')">Who We Serve</a>
     <a href="#material-spec" onclick="navTo(event,'#material-spec')">Technical Reference</a>
-    <a href="#factory-visit" onclick="navTo(event,'#factory-visit')">Factory Visit</a>
     <div class="mob-group">More</div>
     <a href="#faq" onclick="navTo(event,'#faq')">FAQs</a>
-    <a href="#catalogue" onclick="navTo(event,'#catalogue')">Download Catalogue</a>
+    <a href="#catalogue" onclick="navTo(event,'#catalogue')">Catalogue</a>
     <a href="#contact" onclick="navTo(event,'#contact')">Contact Us</a>
   </div>
   <div class="mob-footer"><a href="#contact" onclick="navTo(event,'#contact')">Request a Sample →</a></div>
