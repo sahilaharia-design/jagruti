@@ -86,6 +86,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+html{overflow-x:hidden}
 body{font-family:var(--fb);background:var(--white);color:var(--ink);overflow-x:hidden;line-height:1.6}
 img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
@@ -129,9 +130,9 @@ nav.scrolled{box-shadow:0 4px 32px rgba(13,31,60,.13)}
 }
 .nav-cta::after{display:none}
 .nav-cta:hover{background:var(--blue-dk);transform:translateY(-2px);box-shadow:0 6px 22px rgba(27,95,168,.5)}
-.ham{display:none;padding:8px;color:var(--ink);font-size:26px;line-height:1;background:none;border:none;cursor:pointer}
+.ham{display:none;padding:8px;color:var(--ink);font-size:26px;line-height:1;background:none;border:none;cursor:pointer;min-width:44px;min-height:44px;align-items:center;justify-content:center}
 /* Mobile nav CTA (top bar) */
-.nav-mob-cta{display:none;background:var(--blue);color:var(--white);padding:7px 13px;border-radius:5px;font-weight:700;font-size:12px;letter-spacing:.04em;white-space:nowrap;box-shadow:0 2px 10px rgba(27,95,168,.28);transition:background .25s;text-decoration:none;flex-shrink:0;line-height:1.4}
+.nav-mob-cta{display:none;background:var(--blue);color:var(--white);padding:11px 13px;border-radius:5px;font-weight:700;font-size:12px;letter-spacing:.04em;white-space:nowrap;box-shadow:0 2px 10px rgba(27,95,168,.28);transition:background .25s;text-decoration:none;flex-shrink:0;line-height:1.4;min-height:44px;align-items:center;justify-content:center}
 .nav-mob-cta::after{display:none!important}
 .nav-mob-cta:hover{background:var(--blue-dk)}
 
@@ -590,14 +591,14 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 .fc-title{font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:13px;font-weight:500}
 .fc-links{list-style:none;display:flex;flex-direction:column;gap:9px}
 .fc-links li{font-size:13px;color:var(--steel-dk);font-family:var(--fb)}
-.fc-links a{font-size:13px;color:var(--steel-dk);transition:color .25s,transform .25s;display:inline-block}
+.fc-links a{font-size:13px;color:var(--steel-dk);transition:color .25s,transform .25s;display:block;padding:5px 0}
 .fc-links a:hover{color:var(--blue);transform:translateX(4px)}
 .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid var(--border);flex-wrap:wrap;gap:8px}
 .footer-copy{font-family:var(--fm);font-size:10px;color:var(--steel);letter-spacing:.06em}
 .footer-since{font-family:var(--fm);font-size:10px;color:var(--blue);letter-spacing:.15em;text-transform:uppercase;font-weight:600}
 
 /* ═══ B2B CHAT ASSISTANT ═══ */
-.jc-w{position:fixed;bottom:24px;right:24px;z-index:1900;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:var(--fb)}
+.jc-w{position:fixed;bottom:24px;right:24px;z-index:1900;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-family:var(--fb);pointer-events:none}
 
 /* Nudge bubble */
 .jc-nudge{
@@ -605,6 +606,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   border-radius:12px 12px 0 12px;padding:12px 34px 12px 14px;
   box-shadow:0 6px 28px rgba(13,31,60,.3);position:relative;
   font-size:12.5px;line-height:1.5;animation:jcUp .3s ease;
+  pointer-events:auto;
 }
 .jc-nudge-x{
   position:absolute;top:8px;right:9px;background:none;border:none;
@@ -680,6 +682,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   animation:jcBtnPulse 3.5s ease-in-out infinite;
   transition:transform .2s,box-shadow .2s;
   font-family:var(--fb);
+  pointer-events:auto;
 }
 .jc-btn:hover{
   background:linear-gradient(135deg,var(--blue-lt) 0%,var(--blue) 100%);
@@ -729,7 +732,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 .jc-head-time{color:rgba(255,255,255,.4);font-size:9.5px;font-family:var(--fm);margin-top:4px}
 .jc-head-x{
   background:rgba(255,255,255,.12);border:none;color:rgba(255,255,255,.8);
-  border-radius:7px;width:28px;height:28px;
+  border-radius:7px;width:38px;height:38px;
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;font-size:13px;flex-shrink:0;transition:all .15s;
 }
@@ -874,7 +877,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 .jc-rst,.jc-hum{
   background:none;border:none;color:#7a96b0;font-size:11px;
   cursor:pointer;font-family:var(--fm);letter-spacing:.03em;
-  transition:color .15s;padding:0;
+  transition:color .15s;padding:8px 6px;min-height:36px;
 }
 .jc-rst:hover,.jc-hum:hover{color:var(--navy)}
 
@@ -914,7 +917,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   .jc-head-name{font-size:13.5px}
   .jc-head-role{font-size:9.5px}
   .jc-head-time{font-size:9px}
-  .jc-head-x{width:27px;height:27px;font-size:12px}
+  .jc-head-x{width:38px;height:38px;font-size:13px}
 
   /* ── Trust strip ── */
   .jc-trust{padding:6px 12px;gap:5px}
@@ -948,8 +951,8 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 
   /* ── CTA bar ── */
   .jc-ctas{padding:9px 12px;gap:6px;grid-template-columns:1fr 1fr 1fr 38px}
-  .jc-cta-wa{font-size:13px;padding:10px}
-  .jc-cta-sm,.jc-cta-li{padding:8px 4px;font-size:10.5px}
+  .jc-cta-wa{font-size:13px;padding:13px 10px;min-height:44px}
+  .jc-cta-sm,.jc-cta-li{padding:11px 4px;font-size:10.5px;min-height:44px}
 
   /* ── Panel footer ── */
   .jc-pfoot{padding:8px 13px}
@@ -970,6 +973,11 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   .jc-exit-card{border-radius:14px}
   .jc-exit-pri,.jc-exit-wa{padding:12px 16px;font-size:12.5px}
   .jc-exit-ghost{padding:10px 16px;font-size:12px}
+
+  /* ── Section grids responsive ── */
+  .about-grid-3{grid-template-columns:repeat(3,1fr)!important}
+  .app-cards-grid{grid-template-columns:1fr!important}
+  .facility-visit-btns{flex-direction:column;align-items:center}
 }
 
 /* ═══ RESPONSIVE ═══ */
@@ -977,8 +985,8 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   nav{padding:0 20px}
   .nav-links{display:none}
   .nav-cta{display:none}
-  .nav-mob-cta{display:inline-block}
-  .ham{display:block}
+  .nav-mob-cta{display:inline-flex}
+  .ham{display:flex}
   .plat-logo-link{min-width:170px;min-height:76px;padding:18px 28px}
   .plat-logo-link svg{height:34px}
   .sec{padding:48px 20px}
@@ -1026,6 +1034,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   .footer-top{grid-template-columns:1fr 1fr;gap:24px}
   /* Hospitality */
   #hospitality .hosp-intro{grid-template-columns:1fr!important;gap:24px!important}
+  #hospitality{overflow-x:hidden}
   #hospitality .hosp-cards{grid-template-columns:1fr 1fr!important}
   /* HSN grid */
   .hsn-grid{grid-template-columns:1fr!important}
@@ -1114,6 +1123,8 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   .about-grid-3{grid-template-columns:repeat(3,1fr)!important}
   .app-cards-grid{grid-template-columns:1fr!important}
   .faq-a{padding:0 18px 16px;padding-top:14px;font-size:13px}
+  .facility-visit-sec{padding:48px 24px!important}
+  .facility-visit-sec h2{font-size:26px!important}
 }
 @media(max-width:480px){
   .about-grid-3{grid-template-columns:1fr 1fr!important}
@@ -1382,7 +1393,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
       </svg>
       <div style="font-family:var(--fh);font-size:16px;font-weight:700;color:var(--white);text-align:center;margin-bottom:6px;letter-spacing:-.01em">Your Pattern Here</div>
       <div style="font-family:var(--fm);font-size:10px;color:var(--steel-dk);letter-spacing:.1em;text-align:center;margin-bottom:18px">ANY SIZE · ANY DESIGN</div>
-      <a href="#contact" class="btn-blue" style="font-size:12px;padding:9px 18px;letter-spacing:.06em">Send Your Spec →</a>
+      <a href="#contact" class="btn-blue" style="font-size:12px;padding:13px 18px;letter-spacing:.06em;min-height:44px;display:inline-flex;align-items:center;justify-content:center">Send Your Spec →</a>
     </div>
 </div>
   <div class="usp-block" id="uspBlock">
@@ -1697,7 +1708,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 </section>
 
 <!-- APPLICATION CASE STUDIES -->
-<section class="sec" style="background:var(--off)" id="applications-proof">
+<section class="sec" style="background:var(--off);overflow-x:hidden" id="applications-proof">
   <div class="fade-up" style="text-align:center;max-width:680px;margin:0 auto 48px">
     <div class="skicker" style="color:var(--blue)">How We're Used</div>
     <h2 class="sh dark">Components That Ship Inside<br>Global Cookware Brands</h2>
@@ -2120,7 +2131,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 </section>
 
 <!-- FACILITY VISIT CTA -->
-<section style="background:var(--navy);padding:64px 60px;text-align:center">
+<section style="background:var(--navy);padding:64px 60px;text-align:center" class="facility-visit-sec">
   <div class="fade-up" style="max-width:600px;margin:0 auto">
     <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;padding:6px 14px;border-radius:20px;background:rgba(27,95,168,.2);border:1px solid rgba(59,143,216,.3)">
       <div style="width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0"></div>
@@ -2128,7 +2139,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
     </div>
     <h2 style="font-family:var(--fh);font-size:32px;font-weight:700;color:var(--white);line-height:1.25;margin-bottom:16px">Come See Our Factory.<br>Serious Buyers Only.</h2>
     <p style="font-size:15px;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:32px">We open our Mumbai and Gujarat facilities to qualified procurement teams. Process walkthrough, tooling inspection, material traceability review — come and verify.</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <div class="facility-visit-btns" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
       <a href="#contact" class="btn-blue" style="padding:14px 28px;font-size:15px">Schedule a Visit</a>
       <a href="https://wa.me/919867961395?text=Hi%2C%20I%27d%20like%20to%20schedule%20a%20factory%20visit." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.18);color:var(--white);border-radius:9px;font-weight:600;font-size:14px;transition:all .2s;text-decoration:none">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.55 4.122 1.512 5.856L0 24l6.348-1.664A11.936 11.936 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.014-1.373l-.358-.214-3.74.981.998-3.646-.236-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
