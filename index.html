@@ -1129,6 +1129,37 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 @media(max-width:480px){
   .about-grid-3{grid-template-columns:1fr 1fr!important}
 }
+/* ═══ MFG NETWORK ═══ */
+.mfg-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto 40px}
+.mfg-card{background:rgba(255,255,255,.05);border:1.5px solid rgba(107,135,164,.18);border-radius:12px;padding:28px 24px;position:relative;overflow:hidden}
+.mfg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),transparent)}
+.mfg-card-ico{width:38px;height:38px;border-radius:9px;background:rgba(27,95,168,.18);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.mfg-card-label{font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-lt);margin-bottom:6px}
+.mfg-card-title{font-family:var(--fh);font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px;line-height:1.25}
+.mfg-card-body{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7}
+/* ═══ OEM SECTION ═══ */
+.oem-caps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:0 auto 40px}
+.oem-cap{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:22px 20px}
+.oem-cap-n{font-family:var(--fm);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.oem-cap-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:7px}
+.oem-cap-body{font-size:12.5px;color:var(--steel-dk);line-height:1.65}
+/* ═══ ABOUT TRUST MINI ═══ */
+.about-trust-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:900px;margin:32px auto 0}
+.atm-item{background:var(--white);border:1.5px solid var(--border);border-radius:10px;padding:20px 16px}
+.atm-title{font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.atm-body{font-size:12px;color:var(--steel-dk);line-height:1.6}
+/* ═══ CONTACT DUAL LOCATION ═══ */
+.guj-map-wrap{border-radius:10px;overflow:hidden;border:1.5px solid var(--border);box-shadow:0 4px 24px rgba(13,31,60,.10)}
+.guj-map-wrap iframe{display:block;width:100%;height:260px;border:0}
+@media(max-width:768px){
+  .mfg-cards{grid-template-columns:1fr!important}
+  .oem-caps{grid-template-columns:1fr 1fr!important}
+  .about-trust-mini{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:480px){
+  .oem-caps{grid-template-columns:1fr!important}
+  .about-trust-mini{grid-template-columns:1fr!important}
+}
 </style>
 </head>
 <body>
@@ -1679,6 +1710,68 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
       <div style="font-size:14px;font-weight:700;color:var(--navy)">1974</div>
       <div style="font-size:13px;color:var(--steel-dk)">50+ years in operation</div>
     </div>
+    <div style="flex:1;min-width:200px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--steel);margin-bottom:10px">Gujarat Unit — GSTIN</div>
+      <div style="font-family:var(--fm);font-size:13px;font-weight:600;color:var(--navy);letter-spacing:.08em">24AARFM9084****</div>
+      <div style="font-size:11px;color:var(--steel);margin-top:4px">Mammal Industries, Sarigam — Sister Concern</div>
+    </div>
+  </div>
+  <p class="ssub dark fade-up" style="max-width:720px;margin:32px auto 0;text-align:center">Jagruti Steels Pvt. Ltd. is supported by an associated Gujarat manufacturing unit through Mammal Industries, a sister concern within the Jagruti group ecosystem. Together, this Mumbai and Gujarat manufacturing network gives OEM buyers stronger production depth, better operational flexibility, and greater confidence for repeat B2B supply.</p>
+  <div class="about-trust-mini fade-up">
+    <div class="atm-item">
+      <div class="atm-title">2 Manufacturing Locations</div>
+      <div class="atm-body">Mumbai base with Gujarat production support through our associated sister concern for larger OEM requirements.</div>
+    </div>
+    <div class="atm-item">
+      <div class="atm-title">Custom Tooling In-House</div>
+      <div class="atm-body">Patterns, dies, embossing, samples, and buyer-specific component development — no third-party toolmaker.</div>
+    </div>
+    <div class="atm-item">
+      <div class="atm-title">Built for Repeat Orders</div>
+      <div class="atm-body">Approved samples, batch consistency, and long-term OEM supply designed into our production setup from day one.</div>
+    </div>
+    <div class="atm-item">
+      <div class="atm-title">White-Label Ready</div>
+      <div class="atm-body">Components manufactured as per brand, exporter, and private-label specifications. Your product, our precision.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MFG NETWORK -->
+<section id="mfg-network" class="sec" style="background:var(--navy)">
+  <div class="fade-up" style="text-align:center;max-width:680px;margin:0 auto 48px">
+    <div class="skicker" style="color:var(--blue-lt)">MFG Network</div>
+    <h2 class="sh" style="color:var(--white)">Mumbai Base. Gujarat Capacity.<br>One Jagruti Manufacturing Network.</h2>
+    <p class="ssub" style="color:rgba(255,255,255,.5)">Jagruti Steels Pvt. Ltd. operates through a Mumbai base and an associated Gujarat manufacturing unit, giving OEM buyers stronger production depth, custom tooling support, and scalable supply for stainless steel and metal components.</p>
+  </div>
+  <div class="mfg-cards">
+    <div class="mfg-card fade-up">
+      <div class="mfg-card-ico">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue-lt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <div class="mfg-card-label">Primary Base · Mumbai</div>
+      <div class="mfg-card-title">Jagruti Steels Pvt. Ltd.</div>
+      <div class="mfg-card-body">Primary company, buyer coordination, OEM development, tooling discussions, sample production, and stainless steel component manufacturing. The single point of contact for all procurement relationships.</div>
+    </div>
+    <div class="mfg-card fade-up" style="transition-delay:.1s">
+      <div class="mfg-card-ico">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue-lt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <div class="mfg-card-label">Gujarat Unit · Sarigam</div>
+      <div class="mfg-card-title">Gujarat Manufacturing Unit</div>
+      <div class="mfg-card-body">Expanded production support through Mammal Industries, our sister concern in Sarigam, Gujarat — GSTIN 24AARFM9084****. Built to support larger-volume OEM requirements, repeat B2B production, and white-label component manufacturing.</div>
+    </div>
+    <div class="mfg-card fade-up" style="transition-delay:.2s">
+      <div class="mfg-card-ico">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue-lt)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div class="mfg-card-label">Integrated Supply</div>
+      <div class="mfg-card-title">One OEM Supply Network</div>
+      <div class="mfg-card-body">From drawings and samples to tooling, approval, and bulk production — buyers work with Jagruti as one integrated manufacturing partner. The Gujarat unit operates as extended manufacturing capacity, not a separate sales entity.</div>
+    </div>
+  </div>
+  <div class="fade-up" style="text-align:center">
+    <a href="#contact" class="btn-blue" onclick="if(document.getElementById('contactSourceCta'))document.getElementById('contactSourceCta').value='Discuss OEM Requirement'">Discuss Your OEM Requirement →</a>
   </div>
 </section>
 
@@ -1797,6 +1890,50 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   </div>
   <div class="fade-up" style="text-align:center;margin-top:36px">
     <p style="font-size:12.5px;color:var(--steel);font-family:var(--fm);letter-spacing:.06em">Client names confidential at client request. Component types and delivery structures are accurate.</p>
+  </div>
+</section>
+
+<!-- OEM WHITE LABEL -->
+<section id="oem-whitelabel" class="sec" style="background:var(--navy)">
+  <div class="fade-up" style="text-align:center;max-width:700px;margin:0 auto 48px">
+    <div class="skicker" style="color:var(--blue-lt)">OEM + White Label</div>
+    <h2 class="sh" style="color:var(--white)">Built for Brands That Need<br>Their Own Spec, Not Our Catalogue.</h2>
+    <p class="ssub" style="color:rgba(255,255,255,.5)">Jagruti supports cookware brands, exporters, and private-label buyers with custom stainless steel and metal component manufacturing. From induction base plates and pressure cooker parts to lids, perforated plates, deep-drawn vessels, and custom round components — we manufacture to match your product line, assembly process, and buyer requirements.</p>
+  </div>
+  <div class="oem-caps fade-up">
+    <div class="oem-cap">
+      <div class="oem-cap-n">01</div>
+      <div class="oem-cap-title">Custom Size &amp; Diameter</div>
+      <div class="oem-cap-body">Manufactured as per vessel format, cookware application, or buyer drawing. No catalogue constraint — every dimension is negotiable.</div>
+    </div>
+    <div class="oem-cap">
+      <div class="oem-cap-n">02</div>
+      <div class="oem-cap-title">Thickness &amp; Material Flexibility</div>
+      <div class="oem-cap-body">SS 430, SS 304, mild steel, and application-specific grade selection. Thickness matched to functional and structural requirements.</div>
+    </div>
+    <div class="oem-cap">
+      <div class="oem-cap-n">03</div>
+      <div class="oem-cap-title">Pattern &amp; Perforation Development</div>
+      <div class="oem-cap-body">Custom punching, perforation, grooving, and pattern development for cookware bottoms, steam plates, and precision components.</div>
+    </div>
+    <div class="oem-cap">
+      <div class="oem-cap-n">04</div>
+      <div class="oem-cap-title">Embossing &amp; Branding</div>
+      <div class="oem-cap-body">Logo, pattern, identification, or functional embossing based on tooling feasibility. Your mark, our manufacturing.</div>
+    </div>
+    <div class="oem-cap">
+      <div class="oem-cap-n">05</div>
+      <div class="oem-cap-title">Tooling &amp; Die Development</div>
+      <div class="oem-cap-body">In-house dies, moulds, samples, iterations, and approved production. No third-party toolmaker. Faster cycles, lower cost, your design stays private.</div>
+    </div>
+    <div class="oem-cap">
+      <div class="oem-cap-n">06</div>
+      <div class="oem-cap-title">Repeat OEM Production</div>
+      <div class="oem-cap-body">Built for monthly supply cycles, batch consistency, quality checks, and long-term vendor relationships. Mumbai base and Gujarat unit support scaling requirements.</div>
+    </div>
+  </div>
+  <div class="fade-up" style="text-align:center">
+    <a href="#contact" class="btn-blue" onclick="if(document.getElementById('contactSourceCta'))document.getElementById('contactSourceCta').value='Build Custom Component'">Build My Custom Component →</a>
   </div>
 </section>
 
@@ -2127,6 +2264,40 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
       <div class="faq-body"><p class="faq-a">Yes — we welcome facility visits from qualified buyers and procurement teams. Our Mumbai and Gujarat plants are operational and available for inspection, including process walkthroughs, tooling reviews, and material traceability demonstrations. Contact us to schedule a visit at a time that suits your team.</p></div>
     </div>
 
+    <div class="faq-cat">Manufacturing Network &amp; Customisation</div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false">
+        <span class="faq-q">Do you operate from more than one manufacturing location?</span>
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-body"><p class="faq-a">Yes. Jagruti Steels Pvt. Ltd. operates from Mumbai and is supported by an associated Gujarat manufacturing unit through Mammal Industries, a sister concern within the Jagruti group ecosystem. The Gujarat unit is located in Sarigam, Gujarat, and strengthens our network with expanded production capacity for stainless steel and metal components — supporting larger OEM requirements, repeat production cycles, and white-label supply.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false">
+        <span class="faq-q">Can you manufacture components as per our exact specification?</span>
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-body"><p class="faq-a">Yes. We manufacture as per buyer drawings, samples, diameters, thickness, material grade, finish, perforation pattern, embossing requirement, and monthly production volume — subject to tooling feasibility review. Every component shown on this site is a starting point, not a limit. Send your drawing or sample and we will respond with a tooling and sample timeline.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false">
+        <span class="faq-q">Do you support white-label or private-label cookware component manufacturing?</span>
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-body"><p class="faq-a">Yes. We manufacture components that go inside cookware, pressure cookers, non-stick cookware, stainless steel cookware, hotelware, and kitchenware products for OEM, exporter, and private-label buyers. Components are manufactured as per your product specification — dimensions, material grade, pattern, finish, and embossing. Your branding stays private. Our name does not appear on your product.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-btn" aria-expanded="false">
+        <span class="faq-q">Can serious buyers visit your manufacturing facility?</span>
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-body"><p class="faq-a">Yes. Factory visits can be scheduled for qualified procurement teams, OEM buyers, exporters, and brand representatives after initial requirement discussion. Both our Mumbai base and Gujarat manufacturing unit are available for inspection. Process walkthrough, tooling inspection, and material traceability review are part of the standard buyer visit programme.</p></div>
+    </div>
+
   </div>
 </section>
 
@@ -2158,7 +2329,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
     <div class="fade-left" style="display:flex;flex-direction:column;gap:0">
       <div class="skicker" style="color:var(--blue)">Get in Touch</div>
       <h2 class="sh dark" style="margin-bottom:10px">Have a Spec?<br>We'll Build It.</h2>
-      <p class="ssub dark" style="margin-bottom:28px">Send us a drawing, a sample, or just a size. We'll reply with a timeline and sample cost.</p>
+      <p class="ssub dark" style="margin-bottom:28px">Send us a drawing, a sample, or just a size. Jagruti coordinates OEM development from Mumbai and supports larger production through its associated Gujarat manufacturing unit.</p>
 
       <div class="cd"><div class="cd-icon">📞</div><div><div class="cd-label">Phone / WhatsApp</div><div class="cd-val">+91 98679 61395</div></div></div>
       <div class="cd"><div class="cd-icon">✉</div><div><div class="cd-label">Email</div><div class="cd-val">info.jagrutisteels&#64;gmail.com</div></div></div>
@@ -2205,19 +2376,67 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
       </div>
     </div>
 
-    <!-- RIGHT: Google Maps — full height -->
-    <div class="fade-right" style="border-radius:10px;overflow:hidden;border:1.5px solid var(--border);box-shadow:0 4px 24px rgba(13,31,60,.10);min-height:520px;display:flex;flex-direction:column">
-      <div style="height:4px;background:linear-gradient(90deg,#4285F4 25%,#34A853 25% 50%,#FBBC05 50% 75%,#EA4335 75%);flex-shrink:0"></div>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7723317379996!2d72.86791361142517!3d19.073744982055892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c960406ba97d%3A0xe3ce998230f4c79e!2sJagruti%20Steels%20Pvt.%20Ltd!5e0!3m2!1sen!2sin!4v1777466766111!5m2!1sen!2sin"
-        width="100%"
-        height="100%"
-        style="border:0;display:block;flex:1;min-height:516px"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Jagruti Steels Pvt. Ltd — Mumbai Location">
-      </iframe>
+    <!-- RIGHT: Dual location cards -->
+    <div class="fade-right" style="display:flex;flex-direction:column;gap:20px">
+
+      <!-- Mumbai location card -->
+      <div style="background:var(--off);border:1.5px solid var(--border);border-radius:12px;overflow:hidden">
+        <div style="padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px">
+          <div style="width:34px;height:34px;border-radius:8px;background:rgba(27,95,168,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div style="font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--steel);margin-bottom:3px">Mumbai Base · Main Company</div>
+            <div style="font-size:15px;font-weight:700;color:var(--navy)">Jagruti Steels Pvt. Ltd.</div>
+            <div style="font-size:12px;color:var(--steel-dk);margin-top:3px">Primary buyer coordination, OEM development, samples &amp; tooling discussions.</div>
+          </div>
+        </div>
+        <div style="border-radius:0;overflow:hidden;line-height:0">
+          <div style="height:3px;background:linear-gradient(90deg,#4285F4 25%,#34A853 25% 50%,#FBBC05 50% 75%,#EA4335 75%)"></div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7723317379996!2d72.86791361142517!3d19.073744982055892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c960406ba97d%3A0xe3ce998230f4c79e!2sJagruti%20Steels%20Pvt.%20Ltd!5e0!3m2!1sen!2sin!4v1777466766111!5m2!1sen!2sin"
+            width="100%" height="220"
+            style="border:0;display:block"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Jagruti Steels Pvt. Ltd — Mumbai Location">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Gujarat location card -->
+      <div style="background:var(--off);border:1.5px solid var(--border);border-radius:12px;overflow:hidden">
+        <div style="padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px">
+          <div style="width:34px;height:34px;border-radius:8px;background:rgba(27,95,168,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div>
+            <div style="font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--steel);margin-bottom:3px">Gujarat Manufacturing Unit</div>
+            <div style="font-size:15px;font-weight:700;color:var(--navy)">Gujarat Manufacturing Unit</div>
+            <div style="font-size:11px;color:var(--steel);margin-top:1px">Mammal Industries — Sister Concern of Jagruti Steels Pvt. Ltd.</div>
+            <div style="font-size:12px;color:var(--steel-dk);margin-top:4px">No. 41/2/P6, Village Manda, Nargol Road, Opp. AB Rolling Mill, Sarigam, Gujarat 396155</div>
+            <div style="font-family:var(--fm);font-size:11px;color:var(--steel);margin-top:4px;letter-spacing:.06em">GSTIN 24AARFM9084****</div>
+          </div>
+        </div>
+        <div style="overflow:hidden;line-height:0">
+          <div style="height:3px;background:linear-gradient(90deg,var(--blue) 40%,rgba(27,95,168,.2) 100%)"></div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1871.2074432294958!2d72.85672809770878!3d20.283087243162594!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be0d326618361ef%3A0x42118f929270de07!2sMammal%20Industries!5e0!3m2!1sen!2sin!4v1778748500479!5m2!1sen!2sin"
+            width="100%" height="220"
+            style="border:0;display:block"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Gujarat Manufacturing Unit — Mammal Industries, Sarigam">
+          </iframe>
+        </div>
+        <div style="padding:12px 20px">
+          <a href="https://maps.google.com/?q=Mammal+Industries+Sarigam+Gujarat" target="_blank" rel="noopener" style="font-family:var(--fm);font-size:11px;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:5px">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            View Gujarat Unit on Map →
+          </a>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -2332,6 +2551,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   <div class="footer-bottom">
     <div>
       <span class="footer-copy">© 2025 Jagruti Steels Pvt. Ltd. · Mumbai, Maharashtra, India · GSTIN 27AAACJ9826****</span><br>
+      <span style="font-family:var(--fm);font-size:9.5px;color:rgba(107,135,164,.5);letter-spacing:.05em">Gujarat Unit: Mammal Industries, Sarigam · GSTIN 24AARFM9084**** · Sister Concern</span><br>
       <span style="font-family:var(--fm);font-size:9.5px;color:rgba(107,135,164,.5);letter-spacing:.05em">Materials aligned with BIS / EN 1.4016 · All specifications subject to final order confirmation</span>
     </div>
     <span class="footer-since">Manufacturing Since 1974</span>
