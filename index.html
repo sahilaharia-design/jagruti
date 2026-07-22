@@ -153,19 +153,20 @@
   <div class="hero-left">
     <span class="hero-kicker">Mumbai, India · OEM Since 1974</span>
     <h1 class="hero-h1">Cookware<br>Components.<br><span class="hero-h1-accent">Any Type.</span></h1>
-    <!-- Product category tabs -->
+    <!-- Underline tab navigation -->
     <div class="hero-tabs" role="tablist" aria-label="Product categories">
       <button class="hero-tab active" role="tab" aria-selected="true" onclick="heroTab(0,true)">Induction Plates</button>
       <button class="hero-tab" role="tab" aria-selected="false" onclick="heroTab(1,true)">Tri-Ply</button>
       <button class="hero-tab" role="tab" aria-selected="false" onclick="heroTab(2,true)">Pressure Cooker</button>
       <button class="hero-tab" role="tab" aria-selected="false" onclick="heroTab(3,true)">Custom OEM</button>
     </div>
-    <!-- Per-tab body copy -->
-    <div class="hero-body-wrap">
-      <p class="hero-body hero-copy" data-slide="0">SS 430 ferritic discs stamped to your diameter, pattern and hole geometry. <strong>Inside India's top cookware brands</strong> — and shipping to buyers in EU, Turkey, Vietnam and UAE.</p>
-      <p class="hero-body hero-copy" data-slide="1" style="display:none">SS 304 lids, vessel bodies and disc components for the growing <strong>tri-ply and clad cookware</strong> segment. Built to your drawing, weld-ready, scaled for OEM volumes.</p>
-      <p class="hero-body hero-copy" data-slide="2" style="display:none">High-strength base plates, lids and support rings for <strong>aluminium and SS pressure cooker</strong> bodies. Flat, dome and embossed profiles — any diameter.</p>
-      <p class="hero-body hero-copy" data-slide="3" style="display:none">Any geometry, any grade — SS 430, SS 304 or mild steel. <strong>In-house tooling from your drawing.</strong> From qualification sample to full OEM supply in weeks.</p>
+    <!-- Dynamic content block — fades up on every tab switch -->
+    <div class="hero-dynamic" id="heroDynamic">
+      <div class="hero-cat" id="heroCat">SS 430 Induction Grade</div>
+      <p class="hero-body hero-copy active" data-slide="0">SS 430 ferritic discs stamped to your diameter, pattern and hole geometry. <strong>Inside India's top cookware brands</strong> — shipping to buyers in EU, Turkey, Vietnam and UAE.</p>
+      <p class="hero-body hero-copy" data-slide="1">SS 304 lids, vessel bodies and disc components for the fast-growing <strong>tri-ply and clad cookware</strong> segment. Built to your drawing, weld-ready, scaled for OEM volumes.</p>
+      <p class="hero-body hero-copy" data-slide="2">High-strength base plates, lids and support rings for <strong>aluminium and stainless steel pressure cooker</strong> bodies. Flat, dome and embossed profiles — any diameter.</p>
+      <p class="hero-body hero-copy" data-slide="3">Any geometry, any grade — SS 430, SS 304 or mild steel. <strong>In-house tooling from your drawing.</strong> Qualification sample to full OEM supply in weeks.</p>
     </div>
     <div class="hero-btns">
       <a href="#contact" class="btn-blue">Request a Sample</a>
@@ -178,39 +179,29 @@
       <div class="hstat"><span class="hstat-n">Global</span><span class="hstat-l">Export Ready</span></div>
     </div>
   </div>
-  <!-- HERO RIGHT — 4-slide photo panel, crossfades on tab switch -->
+  <!-- Hero right — full-bleed cinematic photo panel -->
   <div class="hero-right">
-    <!-- Slide 0: Induction Base Plates -->
     <div class="hero-slide active" data-slide="0">
-      <img class="hero-pan-img" src="/images/three-non-stick-fry-pans-showing-ss-430-induction-base-plate-fdf6fe2fed.jpg" alt="Non-stick fry pans with SS 430 induction base plates — Jagruti Steels" loading="eager"/>
+      <img src="/images/three-non-stick-fry-pans-showing-ss-430-induction-base-plate-fdf6fe2fed.jpg" alt="Non-stick fry pans with SS 430 induction base plates — Jagruti Steels" loading="eager"/>
     </div>
-    <!-- Slide 1: Tri-Ply Components -->
     <div class="hero-slide" data-slide="1">
-      <img class="hero-pan-img" src="/images/stamped-stainless-steel-lid-65917aecfb.jpg" alt="Stamped stainless steel lid for tri-ply cookware — Jagruti Steels" loading="lazy"/>
+      <img src="/images/stamped-stainless-steel-lid-65917aecfb.jpg" alt="Stamped stainless steel lid for tri-ply cookware — Jagruti Steels" loading="lazy"/>
     </div>
-    <!-- Slide 2: Pressure Cooker Parts -->
     <div class="hero-slide" data-slide="2">
-      <img class="hero-pan-img" src="/images/aluminium-pressure-cooker-with-induction-base-plate-17c5c68e7d.jpg" alt="Aluminium pressure cooker with induction base plate — Jagruti Steels" loading="lazy"/>
+      <img src="/images/aluminium-pressure-cooker-with-induction-base-plate-17c5c68e7d.jpg" alt="Aluminium pressure cooker with induction base plate — Jagruti Steels" loading="lazy"/>
     </div>
-    <!-- Slide 3: Custom OEM -->
     <div class="hero-slide" data-slide="3">
-      <img class="hero-pan-img" src="/images/deep-drawn-stainless-steel-bowls-437a462775.jpg" alt="Deep drawn stainless steel bowls — Custom OEM Jagruti Steels" loading="lazy"/>
+      <img src="/images/deep-drawn-stainless-steel-bowls-437a462775.jpg" alt="Deep drawn stainless steel bowls — Custom OEM Jagruti Steels" loading="lazy"/>
     </div>
-    <!-- Spec badge — updates per tab -->
-    <div class="hero-badge">
+    <div class="hero-badge" id="heroBadge">
       <div class="badge-tag" id="bTag">Induction Base Plates</div>
       <div class="badge-row"><span class="bk">Material</span><span class="bv" id="bMat">SS 430</span></div>
       <div class="badge-row"><span class="bk" id="bDimKey">Diameter</span><span class="bv" id="bDim">Any size</span></div>
       <div class="badge-row"><span class="bk">Pattern / Form</span><span class="bv" id="bPat">Your design</span></div>
       <div class="badge-row"><span class="bk">Tooling</span><span class="bv">In-house</span></div>
     </div>
-    <!-- Tab progress indicator -->
-    <div class="hero-tab-dots">
-      <span class="htd active" data-slide="0"></span>
-      <span class="htd" data-slide="1"></span>
-      <span class="htd" data-slide="2"></span>
-      <span class="htd" data-slide="3"></span>
-    </div>
+    <div class="hero-counter"><span class="hero-counter-cur" id="hCtr">01</span><span>/</span><span>04</span></div>
+    <div class="hero-progress"><div class="hero-progress-bar" id="hBar"></div></div>
   </div>
 </section>
 
@@ -1632,38 +1623,45 @@ window.addEventListener('scroll', () => {
 // ── Hero tab switcher ──
 var _heroIdx = 0;
 var _heroTimer = null;
+var _heroCats = ['SS 430 Induction Grade','SS 304 Tri-Ply Supply','Pressure Cooker Parts','Custom OEM Stamping'];
 var _heroBadge = [
-  {tag:'Induction Base Plates', mat:'SS 430',       dimKey:'Diameter', dim:'Any size',      pat:'Your design'},
-  {tag:'Tri-Ply Components',    mat:'SS 304',       dimKey:'Profile',  dim:'Lids & Vessels', pat:'Clad-ready'},
-  {tag:'Pressure Cooker Parts', mat:'SS 304 / 430', dimKey:'Diameter', dim:'Any diameter',   pat:'Flat · Dome · Emboss'},
-  {tag:'Custom OEM',            mat:'SS 430 · SS 304 · MS', dimKey:'Geometry', dim:'Any',   pat:'From your drawing'}
+  {tag:'Induction Base Plates', mat:'SS 430',            dimKey:'Diameter', dim:'Any size',       pat:'Your design'},
+  {tag:'Tri-Ply Components',    mat:'SS 304',            dimKey:'Profile',  dim:'Lids & Vessels', pat:'Clad-ready'},
+  {tag:'Pressure Cooker Parts', mat:'SS 304 / 430',      dimKey:'Diameter', dim:'Any diameter',   pat:'Flat · Dome · Emboss'},
+  {tag:'Custom OEM',            mat:'SS 430 · 304 · MS', dimKey:'Geometry', dim:'Any', pat:'From your drawing'}
 ];
 function heroTab(n, userClick) {
   _heroIdx = n;
   // Tabs
-  document.querySelectorAll('.hero-tab').forEach(function(t,i){ t.classList.toggle('active',i===n); t.setAttribute('aria-selected',i===n); });
+  document.querySelectorAll('.hero-tab').forEach(function(t,i){ t.classList.toggle('active',i===n); t.setAttribute('aria-selected',String(i===n)); });
   // Slides
   document.querySelectorAll('.hero-slide').forEach(function(s,i){ s.classList.toggle('active',i===n); });
-  // Dots
-  document.querySelectorAll('.htd').forEach(function(d,i){ d.classList.toggle('active',i===n); });
-  // Copy
-  document.querySelectorAll('.hero-copy').forEach(function(p,i){ p.style.display = i===n ? '' : 'none'; });
-  // Badge
+  // Dynamic block — fade-up animation
+  var dyn = document.getElementById('heroDynamic');
+  if (dyn) { dyn.classList.remove('switching'); void dyn.offsetWidth; dyn.classList.add('switching'); }
+  // Category label
+  var cat = document.getElementById('heroCat'); if(cat) cat.textContent = _heroCats[n];
+  // Body copy
+  document.querySelectorAll('.hero-copy').forEach(function(p,i){ p.classList.toggle('active',i===n); });
+  // Badge animate + update
+  var badge = document.getElementById('heroBadge');
+  if (badge) { badge.classList.remove('switching'); void badge.offsetWidth; badge.classList.add('switching'); }
   var d = _heroBadge[n];
   var bTag = document.getElementById('bTag'); if(bTag) bTag.textContent = d.tag;
   var bMat = document.getElementById('bMat'); if(bMat) bMat.textContent = d.mat;
   var bDimKey = document.getElementById('bDimKey'); if(bDimKey) bDimKey.textContent = d.dimKey;
   var bDim = document.getElementById('bDim'); if(bDim) bDim.textContent = d.dim;
   var bPat = document.getElementById('bPat'); if(bPat) bPat.textContent = d.pat;
-  // Restart timer
+  // Counter
+  var ctr = document.getElementById('hCtr'); if(ctr) ctr.textContent = ('0'+(n+1)).slice(-2);
+  // Progress bar — reset then fill over 5s
+  var bar = document.getElementById('hBar');
+  if (bar) { bar.style.transition='none'; bar.style.width='0%'; void bar.offsetWidth; bar.style.transition='width 5s linear'; bar.style.width='100%'; }
+  // Restart auto-cycle
   if (_heroTimer) clearInterval(_heroTimer);
   _heroTimer = setInterval(function(){ heroTab((_heroIdx+1)%4, false); }, 5000);
 }
-// Dots click
-document.addEventListener('DOMContentLoaded', function(){
-  document.querySelectorAll('.htd').forEach(function(d,i){ d.addEventListener('click', function(){ heroTab(i, true); }); });
-  heroTab(0, false);
-});
+document.addEventListener('DOMContentLoaded', function(){ heroTab(0, false); });
 
 function openNav() {
   var nav = document.getElementById('mobNav');
