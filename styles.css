@@ -267,6 +267,64 @@ nav.scrolled{box-shadow:0 4px 32px rgba(13,31,60,.13)}
 .bk{font-family:var(--fm);font-size:10px;color:var(--steel-dk)}
 .bv{font-family:var(--fm);font-size:10px;color:var(--white);font-weight:500}
 
+/* Hero h1 accent color */
+.hero-h1-accent{color:var(--blue-lt)}
+
+/* Hero grade stat — smaller font for two lines */
+.hstat-grades{font-size:14px!important;line-height:1.35;padding-top:2px}
+
+/* ── Hero category tabs ── */
+.hero-tabs{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:20px;
+}
+.hero-tab{
+  font-family:var(--fm);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--steel-dk);background:transparent;
+  border:1px solid rgba(107,135,164,.22);
+  padding:7px 13px;cursor:pointer;
+  transition:color .2s,border-color .2s,background .2s;
+  line-height:1;
+}
+.hero-tab:hover{color:var(--white);border-color:rgba(59,143,216,.45)}
+.hero-tab.active{
+  color:var(--blue-lt);
+  border-color:var(--blue-lt);
+  background:rgba(59,143,216,.1);
+}
+
+/* ── Hero slides (replacing single hero-img-scene) ── */
+.hero-slide{
+  position:absolute;inset:0;z-index:1;
+  opacity:0;transition:opacity .75s ease;
+  display:flex;align-items:center;justify-content:center;
+  padding:28px 24px;perspective:1000px;
+}
+.hero-slide.active{opacity:1}
+.hero-slide img{
+  max-width:100%;max-height:100%;
+  object-fit:contain;
+  filter:brightness(.92) contrast(1.08);
+  animation:panDrama 14s ease-in-out infinite;
+  transform-origin:center center;
+  will-change:transform,filter;
+}
+
+/* ── Tab progress dots (bottom-right of hero-right) ── */
+.hero-tab-dots{
+  position:absolute;bottom:14px;right:16px;z-index:4;
+  display:flex;gap:5px;align-items:center;
+}
+.htd{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.25);
+  transition:background .3s,width .3s;cursor:pointer;
+}
+.htd.active{
+  width:20px;border-radius:3px;
+  background:var(--blue-lt);
+}
+
 /* ═══ TICKER ═══ */
 .ticker{
   background:var(--navy);border-bottom:1px solid rgba(59,143,216,.12);
@@ -927,6 +985,8 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   .hero-right{order:2;height:72vw;min-height:260px;max-height:400px}
   .hero-right::before{background:linear-gradient(to right,#000 0%,transparent 12%),linear-gradient(to top,rgba(0,0,0,.45) 0%,transparent 35%)}
   .hero-badge{display:none}
+  .hero-tabs{gap:5px;margin-bottom:16px}
+  .hero-tab{font-size:8.5px;padding:6px 10px}
   .hero-stats{flex-wrap:wrap;gap:12px}
   .hstat{flex:0 0 calc(50% - 6px);border-right:none;padding-right:0;margin-right:0;padding-bottom:10px;border-bottom:1px solid rgba(107,135,164,.1)}
   .hero-btns{flex-direction:column;max-width:300px}
