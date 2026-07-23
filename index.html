@@ -152,15 +152,20 @@
 <section class="hero" id="home">
   <div class="hero-left">
     <span class="hero-kicker">Mumbai, India · OEM Since 1974</span>
-    <h1 class="hero-h1">Cookware<br>Components.<br><span class="hero-h1-accent">Any Type.</span></h1>
-    <!-- Underline tab navigation -->
+    <!-- Per-tab dynamic headline — updated by heroTab() -->
+    <div id="heroH1Wrap">
+      <h1 class="hero-h1">
+        <span class="h1l1" id="hL1">Stamped</span>
+        <span class="h1l2" id="hL2">Base Plates.</span>
+      </h1>
+      <span class="hero-h1-tag" id="hTag">SS 430 · Ferritic · Any Diameter</span>
+    </div>
     <div class="hero-tabs" role="tablist" aria-label="Product categories">
       <button class="hero-tab active" role="tab" aria-selected="true" onclick="heroTab(0,true)">Induction Plates</button>
       <button class="hero-tab" role="tab" aria-selected="false" onclick="heroTab(1,true)">Tri-Ply</button>
       <button class="hero-tab" role="tab" aria-selected="false" onclick="heroTab(2,true)">Pressure Cooker</button>
       <button class="hero-tab" role="tab" aria-selected="false" onclick="heroTab(3,true)">Custom OEM</button>
     </div>
-    <!-- Dynamic content block — fades up on every tab switch -->
     <div class="hero-dynamic" id="heroDynamic">
       <div class="hero-cat" id="heroCat">SS 430 Induction Grade</div>
       <p class="hero-body hero-copy active" data-slide="0">SS 430 ferritic discs stamped to your diameter, pattern and hole geometry. <strong>Inside India's top cookware brands</strong> — shipping to buyers in EU, Turkey, Vietnam and UAE.</p>
@@ -179,19 +184,18 @@
       <div class="hstat"><span class="hstat-n">Global</span><span class="hstat-l">Export Ready</span></div>
     </div>
   </div>
-  <!-- Hero right — full-bleed cinematic photo panel -->
   <div class="hero-right">
     <div class="hero-slide active" data-slide="0">
-      <img src="/images/three-non-stick-fry-pans-showing-ss-430-induction-base-plate-fdf6fe2fed.jpg" alt="Non-stick fry pans with SS 430 induction base plates — Jagruti Steels" loading="eager"/>
+      <img src="/images/three-non-stick-fry-pans-showing-ss-430-induction-base-plate-fdf6fe2fed.jpg" alt="Non-stick fry pans with SS 430 induction base plates" loading="eager"/>
     </div>
     <div class="hero-slide" data-slide="1">
-      <img src="/images/stamped-stainless-steel-lid-65917aecfb.jpg" alt="Stamped stainless steel lid for tri-ply cookware — Jagruti Steels" loading="lazy"/>
+      <img src="/images/stamped-stainless-steel-lid-65917aecfb.jpg" alt="Stamped stainless steel lid for tri-ply cookware" loading="lazy"/>
     </div>
     <div class="hero-slide" data-slide="2">
-      <img src="/images/aluminium-pressure-cooker-with-induction-base-plate-17c5c68e7d.jpg" alt="Aluminium pressure cooker with induction base plate — Jagruti Steels" loading="lazy"/>
+      <img src="/images/aluminium-pressure-cooker-with-induction-base-plate-17c5c68e7d.jpg" alt="Aluminium pressure cooker with induction base plate" loading="lazy"/>
     </div>
     <div class="hero-slide" data-slide="3">
-      <img src="/images/deep-drawn-stainless-steel-bowls-437a462775.jpg" alt="Deep drawn stainless steel bowls — Custom OEM Jagruti Steels" loading="lazy"/>
+      <img src="/images/deep-drawn-stainless-steel-bowls-437a462775.jpg" alt="Deep drawn stainless steel bowls — Custom OEM" loading="lazy"/>
     </div>
     <div class="hero-badge" id="heroBadge">
       <div class="badge-tag" id="bTag">Induction Base Plates</div>
@@ -1623,6 +1627,12 @@ window.addEventListener('scroll', () => {
 // ── Hero tab switcher ──
 var _heroIdx = 0;
 var _heroTimer = null;
+var _heroHeadlines = [
+  {l1:'Stamped',       l2:'Base Plates.',   tag:'SS 430 · Ferritic · Any Diameter'},
+  {l1:'Clad-Ready',    l2:'Components.',    tag:'SS 304 · Weld-Ready · OEM Scale'},
+  {l1:'High-Strength', l2:'Stampings.',     tag:'SS 304 · 430 · Flat / Dome / Emboss'},
+  {l1:'Your Drawing,', l2:'Our Press.',     tag:'SS 430 · 304 · MS · In-House Tooling'}
+];
 var _heroCats = ['SS 430 Induction Grade','SS 304 Tri-Ply Supply','Pressure Cooker Parts','Custom OEM Stamping'];
 var _heroBadge = [
   {tag:'Induction Base Plates', mat:'SS 430',            dimKey:'Diameter', dim:'Any size',       pat:'Your design'},
@@ -1634,16 +1644,25 @@ function heroTab(n, userClick) {
   _heroIdx = n;
   // Tabs
   document.querySelectorAll('.hero-tab').forEach(function(t,i){ t.classList.toggle('active',i===n); t.setAttribute('aria-selected',String(i===n)); });
-  // Slides
+  // Slides — snappy crossfade
   document.querySelectorAll('.hero-slide').forEach(function(s,i){ s.classList.toggle('active',i===n); });
-  // Dynamic block — fade-up animation
+  // Headline — animate each line
+  var hw = document.getElementById('heroH1Wrap');
+  if (hw) {
+    hw.classList.remove('hero-h1-switching');
+    void hw.offsetWidth;
+    var h = _heroHeadlines[n];
+    var l1 = document.getElementById('hL1'); if(l1) l1.textContent = h.l1;
+    var l2 = document.getElementById('hL2'); if(l2) l2.textContent = h.l2;
+    var ht = document.getElementById('hTag'); if(ht) ht.textContent = h.tag;
+    hw.classList.add('hero-h1-switching');
+  }
+  // Dynamic block
   var dyn = document.getElementById('heroDynamic');
   if (dyn) { dyn.classList.remove('switching'); void dyn.offsetWidth; dyn.classList.add('switching'); }
-  // Category label
   var cat = document.getElementById('heroCat'); if(cat) cat.textContent = _heroCats[n];
-  // Body copy
   document.querySelectorAll('.hero-copy').forEach(function(p,i){ p.classList.toggle('active',i===n); });
-  // Badge animate + update
+  // Badge
   var badge = document.getElementById('heroBadge');
   if (badge) { badge.classList.remove('switching'); void badge.offsetWidth; badge.classList.add('switching'); }
   var d = _heroBadge[n];
@@ -1654,12 +1673,12 @@ function heroTab(n, userClick) {
   var bPat = document.getElementById('bPat'); if(bPat) bPat.textContent = d.pat;
   // Counter
   var ctr = document.getElementById('hCtr'); if(ctr) ctr.textContent = ('0'+(n+1)).slice(-2);
-  // Progress bar — reset then fill over 5s
+  // Progress bar — 4s fill
   var bar = document.getElementById('hBar');
-  if (bar) { bar.style.transition='none'; bar.style.width='0%'; void bar.offsetWidth; bar.style.transition='width 5s linear'; bar.style.width='100%'; }
-  // Restart auto-cycle
+  if (bar) { bar.style.transition='none'; bar.style.width='0%'; void bar.offsetWidth; bar.style.transition='width 4s linear'; bar.style.width='100%'; }
+  // Auto-advance at 4s
   if (_heroTimer) clearInterval(_heroTimer);
-  _heroTimer = setInterval(function(){ heroTab((_heroIdx+1)%4, false); }, 5000);
+  _heroTimer = setInterval(function(){ heroTab((_heroIdx+1)%4, false); }, 4000);
 }
 document.addEventListener('DOMContentLoaded', function(){ heroTab(0, false); });
 
