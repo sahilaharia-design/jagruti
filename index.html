@@ -1675,10 +1675,10 @@ function heroTab(n, userClick) {
   var ctr = document.getElementById('hCtr'); if(ctr) ctr.textContent = ('0'+(n+1)).slice(-2);
   // Progress bar — 4s fill
   var bar = document.getElementById('hBar');
-  if (bar) { bar.style.transition='none'; bar.style.width='0%'; void bar.offsetWidth; bar.style.transition='width 4s linear'; bar.style.width='100%'; }
-  // Auto-advance at 4s
+  if (bar) { bar.style.transition='none'; bar.style.width='0%'; void bar.offsetWidth; bar.style.transition='width 5s linear'; bar.style.width='100%'; }
+  // Auto-advance at 5s — syncs with Ken Burns
   if (_heroTimer) clearInterval(_heroTimer);
-  _heroTimer = setInterval(function(){ heroTab((_heroIdx+1)%4, false); }, 4000);
+  _heroTimer = setInterval(function(){ heroTab((_heroIdx+1)%4, false); }, 5000);
 }
 document.addEventListener('DOMContentLoaded', function(){ heroTab(0, false); });
 
