@@ -6,16 +6,16 @@
   --white:#FFF; --off:#F4F6FA; --ink:#1A2332;
   --steel:#7391AC; --steel-lt:#A8BFCF; --steel-dk:#3D5068;
   --border:rgba(107,135,164,.18); --border-lt:rgba(107,135,164,.1);
-  --fh:'Familjen Grotesk','Manrope',sans-serif;
-  --fb:'Plus Jakarta Sans','Manrope',sans-serif;
+  --fh:'Familjen Grotesk','Manrope','Noto Sans Devanagari','Noto Sans Gujarati',sans-serif;
+  --fb:'Plus Jakarta Sans','Manrope','Noto Sans Devanagari','Noto Sans Gujarati',sans-serif;
   --fm:'JetBrains Mono',monospace;
 }
 /* Cyrillic (ru), Devanagari (hi) and Gujarati (gu) locale pages load their
    own Google Fonts link and rely on this fallback chain — Familjen Grotesk /
-   Plus Jakarta Sans have no Cyrillic glyphs, so the browser automatically
-   drops to Manrope (loaded only on /ru/) with no per-language CSS override
-   needed. Devanagari/Gujarati locales will add their own Noto Sans fallback
-   the same way when those pages ship. */
+   Plus Jakarta Sans have no glyphs for any of these scripts, so the browser
+   automatically drops to whichever fallback font is actually loaded on that
+   page (Manrope on /ru/, Noto Sans Devanagari on /hi/, Noto Sans Gujarati on
+   /gu/ once it ships) — no per-language CSS override needed. */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 html{overflow-x:hidden}

@@ -19,6 +19,8 @@ Jagruti Steels designs and produces precision-stamped, deep-drawn and embossed s
 
 - [Homepage](https://www.jagrutisteels.com/): Full product range, manufacturing capabilities, company background, case studies, catalogue download, contact form
 - [Homepage — Russian](https://www.jagrutisteels.com/ru/): Full Russian-language translation of the homepage for Russian-speaking buyers (Russia, CIS)
+- [Homepage — Hindi](https://www.jagrutisteels.com/hi/): Full Hindi-language translation of the homepage for domestic Indian buyers
+- [Homepage — Gujarati](https://www.jagrutisteels.com/gu/): Full Gujarati-language translation of the homepage for buyers in Gujarat's cookware manufacturing cluster (Rajkot, Ahmedabad)
 - [Frequently Asked Questions](https://www.jagrutisteels.com/faq.html): Buyer questions on material grade, MOQ, lead time, OEM process, export and facility visits
 - [SS 430 Material Specification](https://www.jagrutisteels.com/ss430-material-specification.html): Technical comparison of SS 430 vs SS 304 vs mild steel, chemical composition, international standards cross-reference, and manufacturing process
 - [OEM, Private-Label & Export Guide](https://www.jagrutisteels.com/oem-white-label-manufacturing.html): OEM/white-label capabilities, Indian cookware manufacturing clusters, export markets, HSN codes and shipping documentation
