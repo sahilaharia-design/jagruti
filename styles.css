@@ -588,6 +588,9 @@ h2.sh.dark{color:var(--navy)}
 .fbox-title{font-family:var(--fh);font-size:19px;font-weight:700;color:var(--white);margin-bottom:4px}
 .fbox-sub{font-size:13px;color:var(--steel);margin-bottom:22px;line-height:1.5}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
+.ffield{display:flex;flex-direction:column;gap:5px}
+.flabel{font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.flabel-l{font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--steel-dk)}
 .fi{background:rgba(255,255,255,.06);border:1px solid rgba(107,135,164,.2);color:var(--white);padding:11px 13px;font-family:var(--fb);font-size:13px;outline:none;width:100%;border-radius:4px;transition:border-color .25s,box-shadow .25s}
 .fi:focus{border-color:var(--blue-lt);box-shadow:0 0 0 3px rgba(59,143,216,.15)}
 .fi::placeholder{color:var(--steel-dk)}
@@ -929,9 +932,31 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   50%{box-shadow:0 4px 28px rgba(27,95,168,.7),0 0 0 8px rgba(27,95,168,.1)}
 }
 
+/* ═══ MOBILE STICKY CTA BAR ═══ */
+.msticky{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:1200;
+  background:var(--white);border-top:1.5px solid var(--border);
+  box-shadow:0 -4px 20px rgba(13,31,60,.1);
+  padding:10px 12px;padding-bottom:calc(10px + env(safe-area-inset-bottom));
+  gap:8px;
+  transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+}
+.msticky.visible{transform:translateY(0)}
+.msticky-wa{
+  width:44px;height:44px;flex-shrink:0;border-radius:6px;
+  background:#f0fdf4;border:1.5px solid #bbf7d0;
+  display:flex;align-items:center;justify-content:center;
+}
+.msticky-cta{
+  flex:1;background:var(--blue);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13.5px;font-weight:700;border-radius:6px;min-height:44px;
+}
+
 @media(max-width:768px){
+  .msticky{display:flex}
   /* ── Launcher: clean 54px FAB circle ── */
-  .jc-w{bottom:18px;right:18px;gap:10px}
+  .jc-w{bottom:82px;right:18px;gap:10px}
   .jc-btn{
     width:54px;height:54px;border-radius:50%;
     padding:0;gap:0;justify-content:center;align-items:center;
