@@ -45,6 +45,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.jagrutisteels.com/"/>
   </url>
   <url>
+    <loc>https://www.jagrutisteels.com/privacy-policy.html</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.jagrutisteels.com/terms-and-conditions.html</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://www.jagrutisteels.com/faq.html</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
