@@ -91,6 +91,7 @@
         <a href="#products" onclick="navTo(event,'#products')">What We Make</a>
         <a href="#induction" onclick="navTo(event,'#induction')">Induction Plates</a>
         <a href="/pressure-cooker-components-manufacturer.html">Pressure Cooker Components</a>
+        <a href="/hospitality-food-service.html">Hospitality &amp; Food Service</a>
         <a href="#applications" onclick="navTo(event,'#applications')">Applications</a>
       </div>
     </li>
@@ -137,6 +138,7 @@
     <a href="#products" onclick="navTo(event,'#products')">What We Make</a>
     <a href="#induction" onclick="navTo(event,'#induction')">Induction Plates</a>
     <a href="/pressure-cooker-components-manufacturer.html">Pressure Cooker Components</a>
+    <a href="/hospitality-food-service.html">Hospitality &amp; Food Service</a>
     <a href="#applications" onclick="navTo(event,'#applications')">Applications</a>
     <div class="mob-group">Capabilities</div>
     <a href="#capabilities" onclick="navTo(event,'#capabilities')">Manufacturing Capabilities</a>
@@ -408,12 +410,15 @@
     </div>
     <div class="fade-right">
       <p class="ssub" style="margin-bottom:20px">We manufacture precision stainless steel serviceware and kitchen components for the hospitality industry — custom dimensions, polished finish, bulk OEM supply. The same quality that goes into India's leading cookware brands, now serving your tables.</p>
-      <a href="#contact" class="btn-blue">Request Bulk Quote →</a>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#contact" class="btn-blue">Request Bulk Quote →</a>
+        <a href="/hospitality-food-service.html" class="btn-outline" style="border-color:rgba(255,255,255,.3);color:#fff">Explore All Hospitality Products →</a>
+      </div>
     </div>
   </div>
 
-  <!-- 4 product cards -->
-  <div class="hosp-cards" style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-bottom:3px">
+  <!-- 6 product cards -->
+  <div class="hosp-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:3px">
     <div class="pcard fade-up">
       <div class="pcard-img-wrap"><img class="pcard-img" src="/images/stainless-steel-bar-trays-custom-oem-hospitality-ce7bc7ac57.webp" alt="Stainless steel bar trays — custom OEM hospitality" loading="lazy"/></div>
       <div class="pcard-body">
@@ -451,6 +456,26 @@
         <div class="pcard-name">Measuring Bowls</div>
         <div class="pcard-desc"><strong style="color:var(--white)">Inside:</strong> daily-use tools on a bakery or central-kitchen line, handled dozens of times a shift. Graduation markings have to stay legible and dimensionally accurate through years of scrubbing, not just look right on day one.</div>
         <div class="pcard-tag">Deep Draw · Embossed · Bakery Grade</div>
+      </div>
+      <div class="pcard-line"></div>
+    </div>
+    <div class="pcard fade-up" style="transition-delay:.26s;cursor:pointer" onclick="window.location.href='/hospitality-food-service.html#fryer-basket'">
+      <div class="pcard-img-wrap"><img class="pcard-img" src="/images/commercial-round-fryer-basket-dark.webp" alt="Commercial round stainless steel fryer basket with long wire handle — Jagruti Steels" loading="lazy"/></div>
+      <div class="pcard-body">
+        <div class="pcard-n">05</div>
+        <div class="pcard-name">Commercial Round Fryer Basket</div>
+        <div class="pcard-desc"><strong style="color:var(--white)">Inside:</strong> QSR and cloud-kitchen frying stations, hotel kitchens and food-service equipment lines. Deep wire-mesh construction with a long loop handle for controlled lifting and draining, service after service.</div>
+        <div class="pcard-tag">Wire Mesh · Long Handle · Custom Diameter · Bulk OEM</div>
+      </div>
+      <div class="pcard-line"></div>
+    </div>
+    <div class="pcard fade-up" style="transition-delay:.32s;cursor:pointer" onclick="window.location.href='/hospitality-food-service.html#snack-dip-platter'">
+      <div class="pcard-img-wrap"><img class="pcard-img" src="/images/stainless-steel-snack-dip-platter-dark.webp" alt="Stainless steel snack and dip platter with integrated centre bowl — Jagruti Steels" loading="lazy"/></div>
+      <div class="pcard-body">
+        <div class="pcard-n">06</div>
+        <div class="pcard-name">Stainless Steel Snack &amp; Dip Platter</div>
+        <div class="pcard-desc"><strong style="color:var(--white)">Inside:</strong> buffet lines, banquets and lounge service — the platter that carries the snack and its dip as one coordinated piece, not two dishes a server has to juggle.</div>
+        <div class="pcard-tag">Integrated Centre Bowl · Hospitality Service · Custom Size · Bulk OEM</div>
       </div>
       <div class="pcard-line"></div>
     </div>
@@ -1307,6 +1332,9 @@
             <option>Lids &amp; Supporting Components</option>
             <option>Deep Drawn Bowls / Vessels</option>
             <option>Multi-cooker / Steamer Plates</option>
+            <option>Commercial Round Fryer Basket</option>
+            <option>Stainless Steel Snack &amp; Dip Platter</option>
+            <option>Other Hospitality / Food-Service Product</option>
             <option>Multiple Products</option>
             <option>Not sure — need guidance</option>
           </select></div>
@@ -1456,6 +1484,7 @@
         <li><a href="#products">Lids &amp; Components</a></li>
         <li><a href="#products">Deep Drawn Vessels</a></li>
         <li><a href="#products">Steamer &amp; Idli Plates</a></li>
+        <li><a href="/hospitality-food-service.html">Hospitality &amp; Food Service</a></li>
       </ul>
     </div>
     <div>
@@ -1855,6 +1884,22 @@ document.querySelectorAll('a[href="#contact"]').forEach(function(a){
     if (f) f.value = cta;
   });
 });
+
+// Preselect Product Required from a ?product= URL param (used by CTAs on other pages, e.g. the hospitality landing page)
+(function(){
+  var p = new URLSearchParams(window.location.search).get('product');
+  if (!p) return;
+  var sel = document.getElementById('cf-product');
+  if (!sel) return;
+  var matched = false;
+  Array.prototype.forEach.call(sel.options, function(opt){
+    if (opt.value.toLowerCase() === p.toLowerCase()) { sel.value = opt.value; matched = true; }
+  });
+  if (matched) {
+    var f = document.getElementById('contactSourceCta');
+    if (f) f.value = 'Product Page CTA';
+  }
+})();
 
 // Nav dropdown click toggle (desktop touch/click support)
 document.querySelectorAll('.nav-dd').forEach(function(dd){
