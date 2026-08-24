@@ -1053,6 +1053,7 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
 @media(max-width:1100px){
   nav{padding:0 20px}
   .nav-links{display:none}
+  .nav-lang-dd{display:none}
   .nav-cta{display:none}
   .nav-mob-cta{display:inline-flex}
   .ham{display:flex}
