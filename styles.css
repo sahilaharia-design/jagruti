@@ -1062,10 +1062,10 @@ footer{background:var(--white);border-top:1.5px solid var(--border);padding:48px
   .sec{padding:48px 20px}
   footer{padding:40px 20px 20px}
   /* Hero — stacked, image below text, breathing room */
-  .hero{grid-template-columns:1fr;min-height:auto}
-  .hero-left{padding:32px 20px 28px;order:1}
+  .hero{grid-template-columns:minmax(0,1fr);min-height:auto}
+  .hero-left{padding:32px 20px 28px;order:1;min-width:0}
   .hero-left::after{display:none}
-  .hero-right{order:2;height:72vw;min-height:260px;max-height:400px}
+  .hero-right{order:2;height:72vw;min-height:260px;max-height:400px;min-width:0}
   .hero-right::before{background:linear-gradient(to right,#02070e 0%,rgba(2,7,14,.7) 30%,transparent 65%),linear-gradient(to top,rgba(2,7,14,.92) 0%,transparent 42%)}
   .hero-h1{font-size:clamp(38px,8vw,56px)}
   .hero-h1-tag{font-size:9px;margin-top:12px}
