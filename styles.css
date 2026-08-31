@@ -398,7 +398,15 @@ nav.scrolled{box-shadow:0 4px 32px rgba(13,31,60,.13)}
 .ticker-text{font-family:var(--fm);font-size:11px;font-weight:500;color:var(--steel-lt);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 
 /* ═══ SECTIONS ═══ */
-.sec{padding:64px 60px}
+/* Depth pass: every section casts a soft seam shadow onto the section above it,
+   plus the same blue accent-line language used on .hero-left::after, so
+   alternating backgrounds read as layered panels rather than a flat color swap. */
+.sec{padding:64px 60px;position:relative;box-shadow:0 -26px 34px -30px rgba(2,7,14,.4)}
+.sec::before{
+  content:'';position:absolute;top:0;left:8%;right:8%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(59,143,216,.28) 50%,transparent);
+  pointer-events:none;
+}
 .skicker{
   font-family:var(--fm);font-size:10px;letter-spacing:.22em;
   text-transform:uppercase;color:var(--blue);
