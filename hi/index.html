@@ -1694,7 +1694,8 @@ window.addEventListener('scroll', () => {
 // ── Mobile nav ──
 // ── Hero tab switcher ──
 var _heroIdx = 0;
-var _heroTimer = null;
+var _heroTimeout = null;
+var _heroHovering = false;
 var _heroHeadlines = [
   {l1:'स्टैम्प्ड', l2:'बेस प्लेट।', tag:'SS 430 · फेराइटिक · कोई भी व्यास'},
   {l1:'Clad-Ready',   l2:'कम्पोनेंट्स।', tag:'SS 304 · वेल्ड-रेडी · OEM स्तर'},
@@ -1741,14 +1742,61 @@ function heroTab(n, userClick) {
   var bPat = document.getElementById('bPat'); if(bPat) bPat.textContent = d.pat;
   // Counter
   var ctr = document.getElementById('hCtr'); if(ctr) ctr.textContent = ('0'+(n+1)).slice(-2);
-  // Progress bar — 4s fill
-  var bar = document.getElementById('hBar');
-  if (bar) { bar.style.transition='none'; bar.style.width='0%'; void bar.offsetWidth; bar.style.transition='width 5s linear'; bar.style.width='100%'; }
-  // Auto-advance at 5s — syncs with Ken Burns
-  if (_heroTimer) clearInterval(_heroTimer);
-  _heroTimer = setInterval(function(){ heroTab((_heroIdx+1)%4, false); }, 5000);
+  // Progress bar resets to 0 on every slide change, then heroScheduleNext
+  // (or, while paused, nothing) takes it back to 100%.
+  var bar0 = document.getElementById('hBar');
+  if (bar0) { bar0.style.transition='none'; bar0.style.width='0%'; }
+  if (_heroTimeout) { clearTimeout(_heroTimeout); _heroTimeout = null; }
+  if (!_heroHovering) heroScheduleNext(5000);
 }
-document.addEventListener('DOMContentLoaded', function(){ heroTab(0, false); });
+
+/**
+ * Hero autoplay — pause on hover/keyboard-focus (WCAG 2.2.2: auto-updating
+ * content running longer than 5s needs a way to pause it), and the progress
+ * bar freezes/resumes in step rather than jumping.
+ */
+function heroScheduleNext(delayMs) {
+  if (_heroTimeout) clearTimeout(_heroTimeout);
+  _heroTimeout = setTimeout(function(){ heroTab((_heroIdx+1)%4, false); }, delayMs);
+  var bar = document.getElementById('hBar');
+  if (bar) {
+    var pct = bar.parentElement.offsetWidth ? (bar.offsetWidth / bar.parentElement.offsetWidth * 100) : 0;
+    bar.style.transition = 'none';
+    bar.style.width = pct + '%';
+    void bar.offsetWidth;
+    bar.style.transition = 'width ' + delayMs + 'ms linear';
+    bar.style.width = '100%';
+  }
+}
+function heroPause() {
+  _heroHovering = true;
+  if (_heroTimeout) { clearTimeout(_heroTimeout); _heroTimeout = null; }
+  var bar = document.getElementById('hBar');
+  if (bar) { var w = bar.offsetWidth; bar.style.transition = 'none'; bar.style.width = w + 'px'; }
+}
+function heroResume() {
+  _heroHovering = false;
+  if (_heroTimeout) return;
+  var bar = document.getElementById('hBar');
+  var pct = 0;
+  if (bar && bar.parentElement.offsetWidth) pct = bar.offsetWidth / bar.parentElement.offsetWidth * 100;
+  heroScheduleNext(Math.max(400, (100 - pct) / 100 * 5000));
+}
+document.addEventListener('DOMContentLoaded', function(){
+  heroTab(0, false);
+  var heroRight = document.querySelector('.hero-right');
+  if (heroRight) {
+    heroRight.addEventListener('mouseenter', heroPause);
+    heroRight.addEventListener('mouseleave', heroResume);
+  }
+  var heroTabsEl = document.querySelector('.hero-tabs');
+  if (heroTabsEl) {
+    heroTabsEl.addEventListener('focusin', heroPause);
+    heroTabsEl.addEventListener('focusout', function(e){
+      if (!heroTabsEl.contains(e.relatedTarget)) heroResume();
+    });
+  }
+});
 
 function openNav() {
   var nav = document.getElementById('mobNav');
