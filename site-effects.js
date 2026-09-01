@@ -35,3 +35,44 @@
     init();
   }
 })();
+
+/**
+ * Scroll-reveal choreography — auto-stagger.
+ * Each page's own inline script still owns the IntersectionObserver that
+ * adds .visible (unchanged). This only assigns transition-delay ahead of
+ * that, so sibling .fade-up/.fade-left/.fade-right elements that share a
+ * parent cascade in sequence instead of popping in together — the gap
+ * being that roughly half the site's fade elements were never given a
+ * manual per-card delay. Elements that already carry an inline
+ * transition-delay (hand-tuned earlier) are left untouched.
+ */
+(function () {
+  var STEP_MS = 70;
+  var MAX_STEPS = 6;
+
+  function stagger() {
+    var groups = new Map();
+    document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(function (el) {
+      var parent = el.parentElement;
+      if (!parent) return;
+      if (!groups.has(parent)) groups.set(parent, []);
+      groups.get(parent).push(el);
+    });
+    // Index against the full sibling group (manually-delayed elements included)
+    // so an auto-assigned delay lands at this element's real position in the
+    // cascade instead of jumping to the front of it.
+    groups.forEach(function (els) {
+      if (els.length < 2) return;
+      els.forEach(function (el, i) {
+        if (el.style.transitionDelay) return; // respect hand-tuned delay
+        el.style.transitionDelay = (Math.min(i, MAX_STEPS) * STEP_MS) + 'ms';
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', stagger);
+  } else {
+    stagger();
+  }
+})();

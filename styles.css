@@ -381,6 +381,8 @@ nav.scrolled{box-shadow:0 4px 32px rgba(13,31,60,.13)}
   .hero-h1-switching .h1l1,.hero-h1-switching .h1l2,.hero-h1-switching .hero-h1-tag{animation:none;opacity:1;transform:none}
   .hero-left>*{animation:none;opacity:1}
   .pcard:hover,.cs:hover,.app-card:hover,.oem-cap:hover{transform:none!important}
+  .fade-up,.fade-left,.fade-right,.plate-card,.usp-block,.reason{opacity:1!important;transform:none!important;transition:none!important}
+  .steps-line{transition:none!important;width:100%!important}
 }
 /* ═══ TICKER ═══ */
 .ticker{
