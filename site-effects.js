@@ -9,7 +9,7 @@
   if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
 
   var MAX_TILT_DEG = 6;
-  var SELECTOR = '.pcard, .cs, .app-card, .oem-cap';
+  var SELECTOR = '.pcard, .cs, .app-card, .oem-cap, .mfg-card';
 
   function attach(el) {
     el.addEventListener('mousemove', function (e) {
@@ -90,7 +90,7 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
 
-  var HOVER_SELECTOR = 'a, button, .pcard, .cs, .app-card, .oem-cap, input, textarea, select, [role="button"], [role="tab"]';
+  var HOVER_SELECTOR = 'a, button, .pcard, .cs, .app-card, .oem-cap, .mfg-card, input, textarea, select, [role="button"], [role="tab"]';
 
   function init() {
     document.documentElement.classList.add('has-custom-cursor');
